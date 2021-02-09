@@ -3,6 +3,9 @@ package model;
 public class CaesarCipher {
 
 
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public static String encryptCipher(String msg, int key) {
 
         StringBuilder buildEncryptedMessage = new StringBuilder();
@@ -18,10 +21,10 @@ public class CaesarCipher {
             if (Character.isLetter(msgToChar)) {
                 msgToChar = (char) (msg.charAt(j) + key);
 
-                // if the message character is Z then it loops back around the alphabet to A again
-                if (msgToChar > 'z') {
-                    msgToChar = (char) (msg.charAt(j) - (26 - key));
-                }
+//                // if the message character is Z then it loops back around the alphabet to A again
+//                if (msgToChar > 'z') {
+//                    msgToChar = (char) (msg.charAt(j) - (26 - key));
+//                }
             }
             // builds a new list of the appended characters which is now the encrypted message
             buildEncryptedMessage.append(msgToChar);
@@ -31,6 +34,10 @@ public class CaesarCipher {
     }
 
 
+
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
     public static String decryptCipher(String encrypted, int key) {
 
         StringBuilder buildEncryptedMessage = new StringBuilder();
@@ -45,9 +52,9 @@ public class CaesarCipher {
             if (Character.isLetter(msgToChar)) {
                 msgToChar = (char) (encrypted.charAt(j) - key);
 
-                if (msgToChar > 'z') {
-                    msgToChar = (char) (encrypted.charAt(j) + (26 + key));
-                }
+//                if (msgToChar > 'z') {
+//                    msgToChar = (char) (encrypted.charAt(j) + (26 + key));
+//                }
             }
             buildEncryptedMessage.append(msgToChar);
         }
