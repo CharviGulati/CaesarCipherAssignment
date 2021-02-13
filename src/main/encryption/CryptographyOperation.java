@@ -2,7 +2,7 @@ package encryption;
 
 import java.util.Date;
 
-public class EncryptionOperation {
+public class CryptographyOperation {
 
     private int id;
     private String type;
@@ -11,7 +11,7 @@ public class EncryptionOperation {
     private String plaintext;
     private int key;
 
-    public EncryptionOperation(String type, Date dateTime, String ciphertext, String plaintext, int key, int id) {
+    public CryptographyOperation(String type, Date dateTime, String ciphertext, String plaintext, int key, int id) {
         this.type = type;
         this.dateTime = dateTime;
         this.ciphertext = ciphertext;
@@ -20,6 +20,8 @@ public class EncryptionOperation {
         this.id = id;
     }
 
+
+    // all getters and setters
     public int getId() {
         return id;
     }
