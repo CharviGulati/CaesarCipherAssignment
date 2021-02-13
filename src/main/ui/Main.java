@@ -4,10 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        GetUserInput.introductionToProgram();
+        GetUserInput.handleUserEncryptionRequest();
         while (true) {
-            GetUserInput.introductionToProgram();
-            GetUserInput.handleUserEncryptionRequest();
-            GetUserInput.getMenuInput();
             GetUserInput.menuOperations();
         }
     }

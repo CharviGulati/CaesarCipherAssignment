@@ -4,7 +4,6 @@ import encryption.CryptographyOperation;
 import encryption.CryptographyOperationsList;
 import model.CaesarCipher;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -45,17 +44,9 @@ public class GetUserInput {
     public static void menuOperations() {
         int choice = getMenuInput();
         if (choice == 1) {
-            ArrayList<CryptographyOperation> encryptionOperations = cryptographyOperationsList
-                    .getEncryptionOperations();
-            for (CryptographyOperation encryptionOperation : encryptionOperations) {
-                System.out.println(encryptionOperation.getType());
-            }
+            printOperationType();
         } else if (choice == 2) {
-            ArrayList<CryptographyOperation> encryptionOperations = cryptographyOperationsList
-                    .getDecryptionOperations();
-            for (CryptographyOperation encryptionOperation : encryptionOperations) {
-                System.out.println(encryptionOperation.getType());
-            }
+            printOperationType();
         } else if (choice == 3) {
             System.out.println("type the ID of the entry you would like to remove: \n");
             int userIDInput = scanner.nextInt();
@@ -124,6 +115,15 @@ public class GetUserInput {
                 randomId));
 
         System.out.println(plaintext);
+    }
+
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    private static void printOperationType() {
+        for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getOperations()) {
+            System.out.println(encryptionOperation.getType());
+        }
     }
 
 }
