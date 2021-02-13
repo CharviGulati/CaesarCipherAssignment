@@ -33,6 +33,7 @@ public class GetUserInput {
                 + "\t3. Delete a previous entry\n"
                 + "\t4. Encrypt a message\n"
                 + "\t5. Decrypt a message\n"
+                + "\t6. Exit the program\n"
                 + "Type in the number of the entry you would like to continue with:");
         return scanner.nextInt();
     }
@@ -55,8 +56,8 @@ public class GetUserInput {
             handleUserEncryptionRequest();
         } else if (choice == 5) {
             handleUserDecryptionRequest();
-        } else {
-            System.out.println("Unknown option entered. Exiting program.");
+        } else if (choice == 6) {
+            System.out.println("\nThank you for using the Caesar Cipher. Exiting program now.");
             System.exit(0);
         }
     }
@@ -95,7 +96,7 @@ public class GetUserInput {
     public static void handleUserDecryptionRequest() {
 
         System.out.println("Type a string you want to decrypt (encrypted with a caesar cipher): ");
-        String ciphertext = scanner.nextLine();
+        String ciphertext = scanner.next();
 
         scanner.nextLine();
 
@@ -114,7 +115,8 @@ public class GetUserInput {
                 decryptionKey,
                 randomId));
 
-        System.out.println(plaintext);
+        System.out.println("You have successfully decrypted a message!\n");
+        System.out.println("\t Your decrypted message is: " + plaintext + "\n\n");
     }
 
     // REQUIRES:
