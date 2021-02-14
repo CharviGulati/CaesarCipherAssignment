@@ -43,6 +43,16 @@ class TestCaesarCipher {
         assertEquals("Hello World 123!", CaesarCipher.encryptCipher(plainTextSix, 26));
         assertEquals("Hello World 123!", CaesarCipher.encryptCipher(plainTextSix, 0));
         assertEquals("Ifmmp Xpsme 123!", CaesarCipher.encryptCipher(plainTextSix, 1));
+
+        assertFalse(CaesarCipher.validKey(-3));
+        assertFalse(CaesarCipher.validKey(27));
+        assertFalse(CaesarCipher.validKey(100));
+
+        assertTrue(CaesarCipher.validKey(0));
+        assertTrue(CaesarCipher.validKey(1));
+        assertTrue(CaesarCipher.validKey(20));
+        assertTrue(CaesarCipher.validKey(26));
+
     }
 
     @Test

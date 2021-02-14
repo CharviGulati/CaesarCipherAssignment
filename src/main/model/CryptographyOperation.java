@@ -1,4 +1,4 @@
-package encryption;
+package model;
 
 import java.util.Date;
 

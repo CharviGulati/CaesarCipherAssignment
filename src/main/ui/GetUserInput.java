@@ -1,7 +1,7 @@
 package ui;
 
-import encryption.CryptographyOperation;
-import encryption.CryptographyOperationsList;
+import model.CryptographyOperation;
+import model.CryptographyOperationsList;
 import model.CaesarCipher;
 
 import java.text.DateFormat;

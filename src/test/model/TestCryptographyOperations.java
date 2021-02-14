@@ -1,6 +1,5 @@
 package model;
 
-import encryption.CryptographyOperation;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,10 +8,10 @@ public class TestCryptographyOperations {
 
     @Test
     public void testMutators() {
-        CryptographyOperation cryptographyOperation = new CryptographyOperation("encryption", new Date(), "cipherText",
+        CryptographyOperation cryptographyOperation = new CryptographyOperation("model.encryption", new Date(), "cipherText",
                 "plainText", 0, 000);
 
-        assertEquals("encryption", cryptographyOperation.getType());
+        assertEquals("model.encryption", cryptographyOperation.getType());
         assertEquals("cipherText", cryptographyOperation.getCiphertext());
         assertEquals("plainText", cryptographyOperation.getPlaintext());
         assertEquals(0, cryptographyOperation.getKey());
