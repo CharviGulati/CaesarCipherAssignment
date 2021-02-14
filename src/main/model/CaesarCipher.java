@@ -11,43 +11,46 @@ public class CaesarCipher {
         StringBuilder buildEncryptedMessage = new StringBuilder();
         int lengthMsg = msg.length();
 
-        for (int j = 0; j < lengthMsg; j++) {
+        if (validKey(key)) {
+            for (int j = 0; j < lengthMsg; j++) {
 
-            // checks to see if the msg character is a letter
-            // and only then adds it to the appended string
-            char msgToChar = msg.charAt(j);
+                // checks to see if the msg character is a letter
+                // and only then adds it to the appended string
+                char msgToChar = msg.charAt(j);
 
+                if (msgToChar >= 'a' && msgToChar <= 'z') {
+                    // if it is a letter then it moves the character at index j using the key
+                    if (Character.isLetter(msgToChar)) {
+                        msgToChar = (char) (msg.charAt(j) + key);
 
-            if (msgToChar >= 'a' && msgToChar <= 'z') {
-                // if it is a letter then it moves the character at index j using the key
-                if (Character.isLetter(msgToChar)) {
-                    msgToChar = (char) (msg.charAt(j) + key);
-
-                    // if the message character is Z then it loops back around the alphabet to A again
-                    if (msgToChar > 'z') {
-                        msgToChar = (char) (msg.charAt(j) - (26 - key));
+                        // if the message character is Z then it loops back around the alphabet to A again
+                        if (msgToChar > 'z') {
+                            msgToChar = (char) (msg.charAt(j) - (26 - key));
+                        }
                     }
                 }
-            }
 
 
-            if (msgToChar >= 'A' && msgToChar <= 'Z') {
-                // if it is a letter then it moves the character at index j using the key
-                if (Character.isLetter(msgToChar)) {
-                    msgToChar = (char) (msg.charAt(j) + key);
+                if (msgToChar >= 'A' && msgToChar <= 'Z') {
+                    // if it is a letter then it moves the character at index j using the key
+                    if (Character.isLetter(msgToChar)) {
+                        msgToChar = (char) (msg.charAt(j) + key);
 
-                    // if the message character is Z then it loops back around the alphabet to A again
-                    if (msgToChar > 'Z') {
-                        msgToChar = (char) (msg.charAt(j) - (26 - key));
+                        // if the message character is Z then it loops back around the alphabet to A again
+                        if (msgToChar > 'Z') {
+                            msgToChar = (char) (msg.charAt(j) - (26 - key));
+                        }
                     }
                 }
+                // builds a new list of the appended characters which is now the encrypted message
+                buildEncryptedMessage.append(msgToChar);
             }
-
-            // builds a new list of the appended characters which is now the encrypted message
-            buildEncryptedMessage.append(msgToChar);
+            // returns the encrypted character
+            return buildEncryptedMessage.toString();
+        } else {
+            System.out.println("invalid key. Please enter a key between 1 and 26");
+            return "";
         }
-        // returns the encrypted character
-        return buildEncryptedMessage.toString();
     }
 
 
@@ -93,6 +96,15 @@ public class CaesarCipher {
             buildEncryptedMessage.append(msgToChar);
         }
         return buildEncryptedMessage.toString();
+    }
 
+
+
+    public static boolean validKey(int key) {
+        if (key <= 26 && key >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

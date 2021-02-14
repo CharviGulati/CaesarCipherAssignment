@@ -77,19 +77,24 @@ public class GetUserInput {
         int inputKey = scanner.nextInt();
         scanner.nextLine();
 
-        String ciphertext = CaesarCipher.encryptCipher(plaintext, inputKey);
-        int randomId = (int) (Math.random() * 10000000 + 1);
+        if (CaesarCipher.validKey(inputKey)) {
+            String ciphertext = CaesarCipher.encryptCipher(plaintext, inputKey);
+            int randomId = (int) (Math.random() * 10000000 + 1);
 
-        cryptographyOperationsList.addOperation(new CryptographyOperation(
-                "Caesar Cipher Encryption",
-                new Date(),
-                ciphertext,
-                plaintext,
-                inputKey,
-                randomId));
+            cryptographyOperationsList.addOperation(new CryptographyOperation(
+                    "Caesar Cipher Encryption",
+                    new Date(),
+                    ciphertext,
+                    plaintext,
+                    inputKey,
+                    randomId));
 
-        System.out.println("You have successfully encrypted a message!\n");
-        System.out.println("\t Your encrypted message is: " + ciphertext + "\n\n");
+            System.out.println("You have successfully encrypted a message!\n");
+            System.out.println("\t Your encrypted message is: " + ciphertext + "\n\n");
+        } else {
+            System.out.println("invalid Key entered. Exiting program");
+            System.exit(0);
+        }
     }
 
 
@@ -104,30 +109,27 @@ public class GetUserInput {
         System.out.println("Type the key: ");
         int decryptionKey = scanner.nextInt();
 
-        String plaintext = CaesarCipher.decryptCipher(ciphertext, decryptionKey);
+        if (CaesarCipher.validKey(decryptionKey)) {
+            String plaintext = CaesarCipher.decryptCipher(ciphertext, decryptionKey);
 
-        int randomId = (int) (Math.random() * 10000000 + 1);
+            int randomId = (int) (Math.random() * 10000000 + 1);
 
-        cryptographyOperationsList.addOperation(new CryptographyOperation(
-                "Caesar Cipher Decryption",
-                new Date(),
-                ciphertext,
-                plaintext,
-                decryptionKey,
-                randomId));
+            cryptographyOperationsList.addOperation(new CryptographyOperation(
+                    "Caesar Cipher Decryption",
+                    new Date(),
+                    ciphertext,
+                    plaintext,
+                    decryptionKey,
+                    randomId));
 
-        System.out.println("You have successfully decrypted a message!\n");
-        System.out.println("\t Your decrypted message is: " + plaintext + "\n\n");
+            System.out.println("You have successfully decrypted a message!\n");
+            System.out.println("\t Your decrypted message is: " + plaintext + "\n\n");
+        } else {
+            System.out.println("invalid Key entered. Exiting program");
+            System.exit(0);
+        }
     }
 
-//    // REQUIRES:
-//    // MODIFIES:
-//    // EFFECTS:
-//    private static void printOperationType() {
-//        for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getOperations()) {
-//            System.out.println(encryptionOperation.getType());
-//        }
-//    }
 
     // REQUIRES:
     // MODIFIES:
@@ -145,7 +147,6 @@ public class GetUserInput {
             System.out.print("\n-------\n");
         }
     }
-
 
 
     // REQUIRES:

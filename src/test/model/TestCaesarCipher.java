@@ -8,31 +8,80 @@ class TestCaesarCipher {
 
     @Test
     public void testCaesarCipherEncryption() {
-
         String plainText = "abc";
-        String encryptedMsg = CaesarCipher.encryptCipher(plainText, 2);
-        assertEquals("cde", encryptedMsg);
+        assertEquals("cde", CaesarCipher.encryptCipher(plainText, 2));
+        assertEquals("abc", CaesarCipher.encryptCipher(plainText, 26));
+        assertEquals("abc", CaesarCipher.encryptCipher(plainText, 0));
+        assertEquals("bcd", CaesarCipher.encryptCipher(plainText, 1));
 
-//        String encryptedTextTwo = CaesarCipher.encryptCipher(plainText, 27);
-//        assertEquals("bcd", encryptedTextTwo);
+        String plainTextTwo = "ABC";
+        assertEquals("CDE", CaesarCipher.encryptCipher(plainTextTwo, 2));
+        assertEquals("ABC", CaesarCipher.encryptCipher(plainTextTwo, 26));
+        assertEquals("ABC", CaesarCipher.encryptCipher(plainTextTwo, 0));
+        assertEquals("BCD", CaesarCipher.encryptCipher(plainTextTwo, 1));
 
-        String encryptedTextThree = CaesarCipher.encryptCipher(plainText, 0);
-        assertEquals("abc", encryptedTextThree);
+        String plainTextThree = "AbC";
+        assertEquals("CdE", CaesarCipher.encryptCipher(plainTextThree, 2));
+        assertEquals("AbC", CaesarCipher.encryptCipher(plainTextThree, 26));
+        assertEquals("AbC", CaesarCipher.encryptCipher(plainTextThree, 0));
+        assertEquals("BcD", CaesarCipher.encryptCipher(plainTextThree, 1));
 
+        String plainTextFour = "Hello World";
+        assertEquals("Jgnnq Yqtnf", CaesarCipher.encryptCipher(plainTextFour, 2));
+        assertEquals("Hello World", CaesarCipher.encryptCipher(plainTextFour, 26));
+        assertEquals("Hello World", CaesarCipher.encryptCipher(plainTextFour, 0));
+        assertEquals("Ifmmp Xpsme", CaesarCipher.encryptCipher(plainTextFour, 1));
+
+        String plainTextFive = "Hello World 123";
+        assertEquals("Jgnnq Yqtnf 123", CaesarCipher.encryptCipher(plainTextFive, 2));
+        assertEquals("Hello World 123", CaesarCipher.encryptCipher(plainTextFive, 26));
+        assertEquals("Hello World 123", CaesarCipher.encryptCipher(plainTextFive, 0));
+        assertEquals("Ifmmp Xpsme 123", CaesarCipher.encryptCipher(plainTextFive, 1));
+
+        String plainTextSix = "Hello World 123!";
+        assertEquals("Jgnnq Yqtnf 123!", CaesarCipher.encryptCipher(plainTextSix, 2));
+        assertEquals("Hello World 123!", CaesarCipher.encryptCipher(plainTextSix, 26));
+        assertEquals("Hello World 123!", CaesarCipher.encryptCipher(plainTextSix, 0));
+        assertEquals("Ifmmp Xpsme 123!", CaesarCipher.encryptCipher(plainTextSix, 1));
     }
 
     @Test
     public void testCaesarCipherDecryption() {
         String plainText = "cde";
-        String dencryptedMsg = CaesarCipher.decryptCipher(plainText, 2);
-        assertEquals("abc", dencryptedMsg);
+        assertEquals("abc", CaesarCipher.decryptCipher(plainText, 2));
+        assertEquals("cde", CaesarCipher.decryptCipher(plainText, 26));
+        assertEquals("cde", CaesarCipher.decryptCipher(plainText, 0));
+        assertEquals("bcd", CaesarCipher.decryptCipher(plainText, 1));
 
-//        String dencryptedMsgTwo = CaesarCipher.decryptCipher("bcd", 27);
-//        assertEquals("abc", dencryptedMsgTwo);
+        String plainTextTwo = "CDE";
+        assertEquals("ABC", CaesarCipher.decryptCipher(plainTextTwo, 2));
+        assertEquals("CDE", CaesarCipher.decryptCipher(plainTextTwo, 26));
+        assertEquals("CDE", CaesarCipher.decryptCipher(plainTextTwo, 0));
+        assertEquals("BCD", CaesarCipher.decryptCipher(plainTextTwo, 1));
 
-        String dencryptedMsgThree = CaesarCipher.decryptCipher(plainText, 0);
-        assertEquals("cde", dencryptedMsgThree);
+        String plainTextThree = "Hello World";
+        assertEquals("Czggj Rjmgy", CaesarCipher.decryptCipher(plainTextThree, 5));
+        assertEquals("Hello World", CaesarCipher.decryptCipher(plainTextThree, 26));
+        assertEquals("Hello World", CaesarCipher.decryptCipher(plainTextThree, 0));
+        assertEquals("Gdkkn Vnqkc", CaesarCipher.decryptCipher(plainTextThree, 1));
 
+        String plainTextFour = "Hello World 123";
+        assertEquals("Czggj Rjmgy 123", CaesarCipher.decryptCipher(plainTextFour, 5));
+        assertEquals("Hello World 123", CaesarCipher.decryptCipher(plainTextFour, 26));
+        assertEquals("Hello World 123", CaesarCipher.decryptCipher(plainTextFour, 0));
+        assertEquals("Gdkkn Vnqkc 123", CaesarCipher.decryptCipher(plainTextFour, 1));
+
+        String plainTextFive = "CdE";
+        assertEquals("AbC", CaesarCipher.decryptCipher(plainTextFive, 2));
+        assertEquals("CdE", CaesarCipher.decryptCipher(plainTextFive, 26));
+        assertEquals("CdE", CaesarCipher.decryptCipher(plainTextFive, 0));
+        assertEquals("BcD", CaesarCipher.decryptCipher(plainTextFive, 1));
+
+        String plainTextSix = "Hello World 123!";
+        assertEquals("Czggj Rjmgy 123!", CaesarCipher.decryptCipher(plainTextSix, 5));
+        assertEquals("Hello World 123!", CaesarCipher.decryptCipher(plainTextSix, 26));
+        assertEquals("Hello World 123!", CaesarCipher.decryptCipher(plainTextSix, 0));
+        assertEquals("Gdkkn Vnqkc 123!", CaesarCipher.decryptCipher(plainTextSix, 1));
     }
 
 
