@@ -8,14 +8,17 @@ public class TestCryptographyOperations {
 
     @Test
     public void testMutators() {
-        CryptographyOperation cryptographyOperation = new CryptographyOperation("model.encryption", new Date(), "cipherText",
+
+        Date testDate = new Date();
+        CryptographyOperation cryptographyOperation = new CryptographyOperation("encryption", testDate, "cipherText",
                 "plainText", 0, 000);
 
-        assertEquals("model.encryption", cryptographyOperation.getType());
+        assertEquals("encryption", cryptographyOperation.getType());
         assertEquals("cipherText", cryptographyOperation.getCiphertext());
         assertEquals("plainText", cryptographyOperation.getPlaintext());
         assertEquals(0, cryptographyOperation.getKey());
         assertEquals(000, cryptographyOperation.getId());
+        assertEquals(testDate.getTime(), cryptographyOperation.getDateTime().getTime());
 
 
         cryptographyOperation.setType("decryption");
@@ -33,6 +36,9 @@ public class TestCryptographyOperations {
         cryptographyOperation.setId(7);
         assertEquals(7, cryptographyOperation.getId());
 
+        Date newDate = new Date();
+        cryptographyOperation.setDateTime(newDate);
+        assertEquals(newDate.getTime(), cryptographyOperation.getDateTime().getTime());
     }
 
 

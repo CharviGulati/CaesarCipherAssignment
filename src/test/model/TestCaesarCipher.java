@@ -44,15 +44,7 @@ class TestCaesarCipher {
         assertEquals("Hello World 123!", CaesarCipher.encryptCipher(plainTextSix, 0));
         assertEquals("Ifmmp Xpsme 123!", CaesarCipher.encryptCipher(plainTextSix, 1));
 
-        assertFalse(CaesarCipher.validKey(-3));
-        assertFalse(CaesarCipher.validKey(27));
-        assertFalse(CaesarCipher.validKey(100));
-
-        assertTrue(CaesarCipher.validKey(0));
-        assertTrue(CaesarCipher.validKey(1));
-        assertTrue(CaesarCipher.validKey(20));
-        assertTrue(CaesarCipher.validKey(26));
-
+        assertEquals("", CaesarCipher.encryptCipher(plainTextSix, 27));
     }
 
     @Test
@@ -92,6 +84,21 @@ class TestCaesarCipher {
         assertEquals("Hello World 123!", CaesarCipher.decryptCipher(plainTextSix, 26));
         assertEquals("Hello World 123!", CaesarCipher.decryptCipher(plainTextSix, 0));
         assertEquals("Gdkkn Vnqkc 123!", CaesarCipher.decryptCipher(plainTextSix, 1));
+
+
+    }
+
+    @Test
+    public void testValidKey() {
+        assertFalse(CaesarCipher.validKey(Integer.MAX_VALUE));
+        assertFalse(CaesarCipher.validKey(Integer.MIN_VALUE));
+        assertFalse(CaesarCipher.validKey(-3));
+        assertFalse(CaesarCipher.validKey(27));
+        assertFalse(CaesarCipher.validKey(100));
+        assertTrue(CaesarCipher.validKey(0));
+        assertTrue(CaesarCipher.validKey(1));
+        assertTrue(CaesarCipher.validKey(20));
+        assertTrue(CaesarCipher.validKey(26));
     }
 
 

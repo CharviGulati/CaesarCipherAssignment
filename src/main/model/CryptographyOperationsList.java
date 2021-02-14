@@ -31,12 +31,12 @@ public class CryptographyOperationsList {
     }
 
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    public ArrayList<CryptographyOperation> getOperations() {
-        return this.cryptographyOperations;
-    }
+//    // REQUIRES:
+//    // MODIFIES:
+//    // EFFECTS:
+//    public ArrayList<CryptographyOperation> getOperations() {
+//        return this.cryptographyOperations;
+//    }
 
 
     // REQUIRES:
