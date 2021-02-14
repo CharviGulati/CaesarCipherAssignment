@@ -49,6 +49,10 @@ class TestCaesarCipher {
 
         assertEquals("", CaesarCipher.encryptCipher(plainTextSix, 27));
         assertEquals("", CaesarCipher.encryptCipher(plainTextSix, -1));
+
+        String plainTextSeven = "!@#$%!";
+        assertEquals("!@#$%!", CaesarCipher.encryptCipher(plainTextSeven, 5));
+        assertEquals("!@#$%!", CaesarCipher.encryptCipher(plainTextSeven, 17));
     }
 
     @Test
@@ -91,6 +95,10 @@ class TestCaesarCipher {
 
         assertEquals("", CaesarCipher.decryptCipher(plainTextSix, 27));
         assertEquals("", CaesarCipher.decryptCipher(plainTextSix, -1));
+
+        String plainTextSeven = "!@#$%!";
+        assertEquals("!@#$%!", CaesarCipher.decryptCipher(plainTextSeven, 12));
+        assertEquals("!@#$%!", CaesarCipher.decryptCipher(plainTextSeven, 22));
 
     }
 
