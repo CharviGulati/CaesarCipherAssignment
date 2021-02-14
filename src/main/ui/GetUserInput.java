@@ -52,9 +52,10 @@ public class GetUserInput {
         } else if (choice == 2) {
             printDecryptionOperations();
         } else if (choice == 3) {
-            System.out.println("type the ID of the entry you would like to remove: \n");
+            System.out.println("Type the ID of the entry you would like to remove: \n");
             int userIDInput = scanner.nextInt();
             cryptographyOperationsList.removeOperation(userIDInput);
+            System.out.println("Entry with the ID " + userIDInput + " has been deleted form file\n\n");
         } else if (choice == 4) {
             handleUserEncryptionRequest();
         } else if (choice == 5) {
@@ -73,7 +74,7 @@ public class GetUserInput {
         System.out.println("Type a string you want to encrypt: ");
         String plaintext = scanner.nextLine();
 
-        System.out.println("Type the key: ");
+        System.out.println("Enter the key (number between 0-26): ");
         int inputKey = scanner.nextInt();
         scanner.nextLine();
 
@@ -92,7 +93,7 @@ public class GetUserInput {
             System.out.println("You have successfully encrypted a message!\n");
             System.out.println("\t Your encrypted message is: " + ciphertext + "\n\n");
         } else {
-            System.out.println("invalid Key entered. Exiting program");
+            System.out.println("Invalid Key entered. Exiting program");
             System.exit(0);
         }
     }
@@ -106,7 +107,7 @@ public class GetUserInput {
         System.out.println("Type a string you want to decrypt: ");
         String ciphertext = scanner.nextLine();
 
-        System.out.println("Type the key: ");
+        System.out.println("Enter the key (number between 0-26): ");
         int decryptionKey = scanner.nextInt();
 
         if (CaesarCipher.validKey(decryptionKey)) {
@@ -141,10 +142,17 @@ public class GetUserInput {
         } else {
             for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getEncryptionOperations()) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                System.out.println("ID: " + encryptionOperation.getId() + " " + encryptionOperation.getType() + " at "
+                System.out.println(encryptionOperation.getType()
+                        + ": You entered the cipher text: "
+                        + encryptionOperation.getPlaintext()
+                        + ", with key: "
+                        + encryptionOperation.getKey()
+                        + " with ID: "
+                        + encryptionOperation.getId()
+                        + " at "
                         + dateFormat.format(encryptionOperation.getDateTime()));
             }
-            System.out.print("\n-------\n");
+            System.out.print("\n----------------------------------------\n");
         }
     }
 
@@ -159,10 +167,17 @@ public class GetUserInput {
         } else {
             for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getDecryptionOperations()) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                System.out.println("ID: " + encryptionOperation.getId() + " " + encryptionOperation.getType() + " at "
+                System.out.println(encryptionOperation.getType()
+                        + ": You entered the cipher text: "
+                        + encryptionOperation.getPlaintext()
+                        + ", with key: "
+                        + encryptionOperation.getKey()
+                        + " with ID: "
+                        + encryptionOperation.getId()
+                        + " at "
                         + dateFormat.format(encryptionOperation.getDateTime()));
             }
-            System.out.print("\n-------\n");
+            System.out.print("\n----------------------------------------\n");
         }
     }
 }
