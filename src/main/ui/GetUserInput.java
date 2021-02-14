@@ -4,6 +4,8 @@ import encryption.CryptographyOperation;
 import encryption.CryptographyOperationsList;
 import model.CaesarCipher;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -44,10 +46,11 @@ public class GetUserInput {
     // EFFECTS:
     public static void menuOperations() {
         int choice = getMenuInput();
+        scanner.nextLine(); // clears newline character from input buffer
         if (choice == 1) {
-            printOperationType();
+            printEncryptionOperations();
         } else if (choice == 2) {
-            printOperationType();
+            printDecryptionOperations();
         } else if (choice == 3) {
             System.out.println("type the ID of the entry you would like to remove: \n");
             int userIDInput = scanner.nextInt();
@@ -67,12 +70,12 @@ public class GetUserInput {
     // MODIFIES:
     // EFFECTS:
     public static void handleUserEncryptionRequest() {
-
         System.out.println("Type a string you want to encrypt: ");
-        String plaintext = scanner.next();
+        String plaintext = scanner.nextLine();
 
         System.out.println("Type the key: ");
         int inputKey = scanner.nextInt();
+        scanner.nextLine();
 
         String ciphertext = CaesarCipher.encryptCipher(plaintext, inputKey);
         int randomId = (int) (Math.random() * 10000000 + 1);
@@ -95,10 +98,8 @@ public class GetUserInput {
     // EFFECTS:
     public static void handleUserDecryptionRequest() {
 
-        System.out.println("Type a string you want to decrypt (encrypted with a caesar cipher): ");
-        String ciphertext = scanner.next();
-
-        scanner.nextLine();
+        System.out.println("Type a string you want to decrypt: ");
+        String ciphertext = scanner.nextLine();
 
         System.out.println("Type the key: ");
         int decryptionKey = scanner.nextInt();
@@ -119,13 +120,50 @@ public class GetUserInput {
         System.out.println("\t Your decrypted message is: " + plaintext + "\n\n");
     }
 
+//    // REQUIRES:
+//    // MODIFIES:
+//    // EFFECTS:
+//    private static void printOperationType() {
+//        for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getOperations()) {
+//            System.out.println(encryptionOperation.getType());
+//        }
+//    }
+
     // REQUIRES:
     // MODIFIES:
     // EFFECTS:
-    private static void printOperationType() {
-        for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getOperations()) {
-            System.out.println(encryptionOperation.getType());
+    private static void printEncryptionOperations() {
+        System.out.println("\nEncryption Operations currently recorded: ");
+        if (cryptographyOperationsList.getEncryptionOperations().size() == 0) {
+            System.out.println("\nNo Encryption operations recorded\n");
+        } else {
+            for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getEncryptionOperations()) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                System.out.println("ID: " + encryptionOperation.getId() + " " + encryptionOperation.getType() + " at "
+                        + dateFormat.format(encryptionOperation.getDateTime()));
+            }
+            System.out.print("\n-------\n");
         }
+    }
+
+
+
+    // REQUIRES:
+    // MODIFIES:
+    // EFFECTS:
+    private static void printDecryptionOperations() {
+        System.out.println("\nDecryption Operations currently recorded: ");
+        if (cryptographyOperationsList.getDecryptionOperations().size() == 0) {
+            System.out.println("\nNo decryption operations recorded\n");
+        } else {
+            for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getDecryptionOperations()) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                System.out.println("ID: " + encryptionOperation.getId() + " " + encryptionOperation.getType() + " at "
+                        + dateFormat.format(encryptionOperation.getDateTime()));
+            }
+            System.out.print("\n-------\n");
+        }
+
     }
 
 }

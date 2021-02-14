@@ -17,13 +17,29 @@ public class CaesarCipher {
             // and only then adds it to the appended string
             char msgToChar = msg.charAt(j);
 
-            // if it is a letter then it moves the character at index j using the key
-            if (Character.isLetter(msgToChar)) {
-                msgToChar = (char) (msg.charAt(j) + key);
 
-                // if the message character is Z then it loops back around the alphabet to A again
-                if (msgToChar > 'z') {
-                    msgToChar = (char) (msg.charAt(j) - (26 - key));
+            if (msgToChar >= 'a' && msgToChar <= 'z') {
+                // if it is a letter then it moves the character at index j using the key
+                if (Character.isLetter(msgToChar)) {
+                    msgToChar = (char) (msg.charAt(j) + key);
+
+                    // if the message character is Z then it loops back around the alphabet to A again
+                    if (msgToChar > 'z') {
+                        msgToChar = (char) (msg.charAt(j) - (26 - key));
+                    }
+                }
+            }
+
+
+            if (msgToChar >= 'A' && msgToChar <= 'Z') {
+                // if it is a letter then it moves the character at index j using the key
+                if (Character.isLetter(msgToChar)) {
+                    msgToChar = (char) (msg.charAt(j) + key);
+
+                    // if the message character is Z then it loops back around the alphabet to A again
+                    if (msgToChar > 'Z') {
+                        msgToChar = (char) (msg.charAt(j) - (26 - key));
+                    }
                 }
             }
 
@@ -52,13 +68,28 @@ public class CaesarCipher {
             // and only then adds it to the appended string
             char msgToChar = encrypted.charAt(j);
 
-            if (Character.isLetter(msgToChar)) {
-                msgToChar = (char) (encrypted.charAt(j) - key);
+            if (msgToChar >= 'a' && msgToChar <= 'z') {
+                if (Character.isLetter(msgToChar)) {
+                    msgToChar = (char) (encrypted.charAt(j) - key);
 
-                if (msgToChar < 'a') {
-                    msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                    if (msgToChar < 'a') {
+                        msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                    }
                 }
             }
+
+
+            if (msgToChar >= 'A' && msgToChar <= 'Z') {
+                if (Character.isLetter(msgToChar)) {
+                    msgToChar = (char) (encrypted.charAt(j) - key);
+
+                    if (msgToChar < 'A') {
+                        msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                    }
+                }
+            }
+
+
             buildEncryptedMessage.append(msgToChar);
         }
         return buildEncryptedMessage.toString();

@@ -44,7 +44,7 @@ public class CryptographyOperationsList {
     // EFFECTS:
     public ArrayList<CryptographyOperation> getEncryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
-                .filter(encOp -> encOp.getType().contains("encrypt")).collect(Collectors.toList());
+                .filter(encOp -> encOp.getType().equals("Caesar Cipher Encryption")).collect(Collectors.toList());
     }
 
 
@@ -53,6 +53,6 @@ public class CryptographyOperationsList {
     // EFFECTS:
     public ArrayList<CryptographyOperation> getDecryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
-                .filter(encOp -> encOp.getType().contains("decrypt")).collect(Collectors.toList());
+                .filter(encOp -> encOp.getType().equals("Caesar Cipher Decryption")).collect(Collectors.toList());
     }
 }
