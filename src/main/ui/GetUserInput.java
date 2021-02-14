@@ -1,5 +1,8 @@
 package ui;
 
+// GetUserInput gets user input on various questions needed for the program to run successfully
+
+
 import model.CryptographyOperation;
 import model.CryptographyOperationsList;
 import model.CaesarCipher;
@@ -15,9 +18,8 @@ public class GetUserInput {
     private static CryptographyOperationsList cryptographyOperationsList = new CryptographyOperationsList();
 
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+
+    // EFFECTS: prints out the initial program greeting
     public static void introductionToProgram() {
         System.out.println("Welcome to the program!\n"
                 + "This program can help you encrypt/decrypt messages\n"
@@ -25,9 +27,7 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: prints out the menu options and gets user inout for their choice form the options
     public static int getMenuInput() {
         System.out.println("You can now select from the following:\n"
                 + "\t1. See previous Encryption entries\n"
@@ -41,9 +41,9 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES:
+    // REQUIRES: User input from the getMenuInput method
     // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: directs user input to the proper method or asks for more information from user and gets input
     public static void menuOperations() {
         int choice = getMenuInput();
         scanner.nextLine(); // clears newline character from input buffer
@@ -66,9 +66,9 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // REQUIRES: user input for encryption required
+    // MODIFIES: cryptographyOperations array
+    // EFFECTS: gets user input for encryption details and adds the operation to the array list
     public static void handleUserEncryptionRequest() {
         System.out.println("Type a string you want to encrypt: ");
         String plaintext = scanner.nextLine();
@@ -98,9 +98,9 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // REQUIRES: user input for decryption required
+    // MODIFIES: cryptographyOperations array
+    // EFFECTS: gets user input for decryption details and adds the operation to the array list
     public static void handleUserDecryptionRequest() {
 
         System.out.println("Type a string you want to decrypt: ");
@@ -131,9 +131,9 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES:
+    // REQUIRES: user input
     // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: prints previous user encryption operations
     private static void printEncryptionOperations() {
         System.out.println("\nEncryption Operations currently recorded: ");
         if (cryptographyOperationsList.getEncryptionOperations().size() == 0) {
@@ -149,9 +149,9 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES:
+    // REQUIRES: user input
     // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: prints previous user decryption operations
     private static void printDecryptionOperations() {
         System.out.println("\nDecryption Operations currently recorded: ");
         if (cryptographyOperationsList.getDecryptionOperations().size() == 0) {
@@ -164,7 +164,5 @@ public class GetUserInput {
             }
             System.out.print("\n-------\n");
         }
-
     }
-
 }

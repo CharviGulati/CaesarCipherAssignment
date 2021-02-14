@@ -1,11 +1,14 @@
 package model;
 
+// The TestCryptographyOperationsList class tests the CryptographyOperationList class and all the methods in it including
+// addOperation to the array, removeOperations form the array, and filter encryption and decryption operations
+
+
 import org.junit.jupiter.api.Test;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestEncryptionOpsList {
-
+public class TestCryptographyOperationsList {
 
     @Test
     public void testAddOperation() {

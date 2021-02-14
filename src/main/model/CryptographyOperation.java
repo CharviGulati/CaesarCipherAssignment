@@ -1,5 +1,9 @@
 package model;
 
+
+// CryptographyOperation class is a class of the object CryptographyOperation that contains all fields needed
+// for the operations. This contains all the getters and setters for the program
+
 import java.util.Date;
 
 public class CryptographyOperation {
@@ -11,6 +15,8 @@ public class CryptographyOperation {
     private String plaintext;
     private int key;
 
+
+    // CryptographyOperation Constructor
     public CryptographyOperation(String type, Date dateTime, String ciphertext, String plaintext, int key, int id) {
         this.type = type;
         this.dateTime = dateTime;
@@ -21,7 +27,7 @@ public class CryptographyOperation {
     }
 
 
-    // all getters and setters
+// All the required getters and setts
     public int getId() {
         return id;
     }

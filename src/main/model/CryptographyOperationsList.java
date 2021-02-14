@@ -1,5 +1,9 @@
 package model;
 
+// CryptographyOperationsList is the class that adds, removes, and filters CryptographyOperations
+// depending on user request in UI.GetUserInput
+
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -14,34 +18,24 @@ public class CryptographyOperationsList {
 
 
     // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    // add encryptions to the list
-    public void addOperation(CryptographyOperation encryptionOperation) {
-        this.cryptographyOperations.add(encryptionOperation);
+    // MODIFIES: this and ArrayList<CryptographyOperation>
+    // EFFECTS: adds cryptographyOperation to the array list
+    public void addOperation(CryptographyOperation cryptographyOperation) {
+        this.cryptographyOperations.add(cryptographyOperation);
     }
 
 
     // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
-    // removing enteries from the list
+    // MODIFIES: this and ArrayList<CryptographyOperation>
+    // EFFECTS: removes entries from the array list
     public void removeOperation(int id) {
         this.cryptographyOperations.removeIf(cryptographyOperation -> cryptographyOperation.getId() == id);
     }
 
 
-//    // REQUIRES:
-//    // MODIFIES:
-//    // EFFECTS:
-//    public ArrayList<CryptographyOperation> getOperations() {
-//        return this.cryptographyOperations;
-//    }
-
-
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: filters the array list to find only EncryptionOperations
     public ArrayList<CryptographyOperation> getEncryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
                 .filter(encOp -> encOp.getType().equals("Caesar Cipher Encryption")).collect(Collectors.toList());
@@ -50,7 +44,7 @@ public class CryptographyOperationsList {
 
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS:
+    // EFFECTS: filters the array list to find only DecryptionOperations
     public ArrayList<CryptographyOperation> getDecryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
                 .filter(encOp -> encOp.getType().equals("Caesar Cipher Decryption")).collect(Collectors.toList());
