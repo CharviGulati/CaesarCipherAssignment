@@ -45,6 +45,7 @@ class TestCaesarCipher {
         assertEquals("Ifmmp Xpsme 123!", CaesarCipher.encryptCipher(plainTextSix, 1));
 
         assertEquals("", CaesarCipher.encryptCipher(plainTextSix, 27));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextSix, -1));
     }
 
     @Test
@@ -85,6 +86,8 @@ class TestCaesarCipher {
         assertEquals("Hello World 123!", CaesarCipher.decryptCipher(plainTextSix, 0));
         assertEquals("Gdkkn Vnqkc 123!", CaesarCipher.decryptCipher(plainTextSix, 1));
 
+        assertEquals("", CaesarCipher.decryptCipher(plainTextSix, 27));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextSix, -1));
 
     }
 

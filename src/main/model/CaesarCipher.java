@@ -54,9 +54,6 @@ public class CaesarCipher {
     }
 
 
-
-
-
     // REQUIRES:
     // MODIFIES:
     // EFFECTS:
@@ -65,46 +62,48 @@ public class CaesarCipher {
         StringBuilder buildEncryptedMessage = new StringBuilder();
         int lengthMsg = encrypted.length();
 
-        for (int j = 0; j < lengthMsg; j++) {
 
-            // checks to see if the msg character is a letter
-            // and only then adds it to the appended string
-            char msgToChar = encrypted.charAt(j);
+        if (validKey(key)) {
+            for (int j = 0; j < lengthMsg; j++) {
 
-            if (msgToChar >= 'a' && msgToChar <= 'z') {
-                if (Character.isLetter(msgToChar)) {
-                    msgToChar = (char) (encrypted.charAt(j) - key);
+                // checks to see if the msg character is a letter
+                // and only then adds it to the appended string
+                char msgToChar = encrypted.charAt(j);
 
-                    if (msgToChar < 'a') {
-                        msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                if (msgToChar >= 'a' && msgToChar <= 'z') {
+                    if (Character.isLetter(msgToChar)) {
+                        msgToChar = (char) (encrypted.charAt(j) - key);
+
+                        if (msgToChar < 'a') {
+                            msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                        }
                     }
                 }
-            }
 
 
-            if (msgToChar >= 'A' && msgToChar <= 'Z') {
-                if (Character.isLetter(msgToChar)) {
-                    msgToChar = (char) (encrypted.charAt(j) - key);
-
-                    if (msgToChar < 'A') {
-                        msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                if (msgToChar >= 'A' && msgToChar <= 'Z') {
+                    if (Character.isLetter(msgToChar)) {
+                        msgToChar = (char) (encrypted.charAt(j) - key);
+                        if (msgToChar < 'A') {
+                            msgToChar = (char) (encrypted.charAt(j) + (26 - key));
+                        }
                     }
                 }
+                buildEncryptedMessage.append(msgToChar);
             }
-
-
-            buildEncryptedMessage.append(msgToChar);
-        }
-        return buildEncryptedMessage.toString();
-    }
-
-
-
-    public static boolean validKey(int key) {
-        if (key <= 26 && key >= 0) {
-            return true;
+            return buildEncryptedMessage.toString();
         } else {
-            return false;
+            System.out.println("invalid key. Please enter a key between 1 and 26");
+            return "";
         }
     }
-}
+
+
+        public static boolean validKey ( int key){
+            if (key <= 26 && key >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
