@@ -17,23 +17,22 @@ public class CryptographyOperationsList {
     }
 
 
-    // REQUIRES:
-    // MODIFIES: this and ArrayList<CryptographyOperation>
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: adds cryptographyOperation to the array list
     public void addOperation(CryptographyOperation cryptographyOperation) {
         this.cryptographyOperations.add(cryptographyOperation);
     }
 
 
-    // REQUIRES:
-    // MODIFIES: this and ArrayList<CryptographyOperation>
+    // REQUIRES: ArrayList<CryptographyOperation> to not be empty
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: removes entries from the array list
     public void removeOperation(int id) {
         this.cryptographyOperations.removeIf(cryptographyOperation -> cryptographyOperation.getId() == id);
     }
 
 
-    // REQUIRES:
+    // REQUIRES: ArrayList<CryptographyOperation> cryptographyOperations to not be empty
     // MODIFIES:
     // EFFECTS: filters the array list to find only EncryptionOperations
     public ArrayList<CryptographyOperation> getEncryptionOperations() {
@@ -42,7 +41,7 @@ public class CryptographyOperationsList {
     }
 
 
-    // REQUIRES:
+    // REQUIRES: ArrayList<CryptographyOperation> cryptographyOperations to not be empty
     // MODIFIES:
     // EFFECTS: filters the array list to find only DecryptionOperations
     public ArrayList<CryptographyOperation> getDecryptionOperations() {

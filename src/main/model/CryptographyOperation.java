@@ -8,9 +8,9 @@ import java.util.Date;
 
 public class CryptographyOperation {
 
-    private int id;
-    private String type;
-    private Date dateTime;
+    private int id;                         // ID for each encryption/decryption entry
+    private String type;                    // type of cipher
+    private Date dateTime;                  // date and time of the user entry
     private String ciphertext;
     private String plaintext;
     private int key;

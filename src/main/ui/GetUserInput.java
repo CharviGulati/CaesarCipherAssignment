@@ -41,8 +41,7 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES: User input from the getMenuInput method
-    // MODIFIES:
+
     // EFFECTS: directs user input to the proper method or asks for more information from user and gets input
     public static void menuOperations() {
         int choice = getMenuInput();
@@ -67,8 +66,8 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES: user input for encryption required
-    // MODIFIES: cryptographyOperations array
+
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: gets user input for encryption details and adds the operation to the array list
     public static void handleUserEncryptionRequest() {
         System.out.println("Type a string you want to encrypt: ");
@@ -99,8 +98,8 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES: user input for decryption required
-    // MODIFIES: cryptographyOperations array
+
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: gets user input for decryption details and adds the operation to the array list
     public static void handleUserDecryptionRequest() {
 
@@ -132,8 +131,7 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES: user input
-    // MODIFIES:
+
     // EFFECTS: prints previous user encryption operations
     private static void printEncryptionOperations() {
         System.out.println("\nEncryption Operations currently recorded: ");
@@ -157,8 +155,8 @@ public class GetUserInput {
     }
 
 
-    // REQUIRES: user input
-    // MODIFIES:
+
+
     // EFFECTS: prints previous user decryption operations
     private static void printDecryptionOperations() {
         System.out.println("\nDecryption Operations currently recorded: ");

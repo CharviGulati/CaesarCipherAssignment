@@ -6,8 +6,8 @@ package model;
 public class CaesarCipher {
 
 
-    // REQUIRES:
-    // MODIFIES: encryption array list
+    // REQUIRES: key to be >= 0 and <= 26
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: encrypts user input with given key
     public static String encryptCipher(String plainText, int key) {
         StringBuilder buildEncryptedMessage = new StringBuilder();
@@ -15,13 +15,13 @@ public class CaesarCipher {
         if (validKey(key)) {
             for (int j = 0; j < lengthMsg; j++) {
                 char msgToChar = plainText.charAt(j);
-                if (msgToChar >= 'a' && msgToChar <= 'z' && Character.isLetter(msgToChar)) {
+                if ((msgToChar >= 'a' && msgToChar <= 'z') && Character.isLetter(msgToChar)) {
                     msgToChar = (char) (plainText.charAt(j) + key);
                     if (msgToChar > 'z') {
                         msgToChar = (char) (plainText.charAt(j) - (26 - key));
                     }
                 }
-                if (msgToChar >= 'A' && msgToChar <= 'Z' && Character.isLetter(msgToChar)) {
+                if ((msgToChar >= 'A' && msgToChar <= 'Z') && Character.isLetter(msgToChar)) {
                     msgToChar = (char) (plainText.charAt(j) + key);
                     if (msgToChar > 'Z') {
                         msgToChar = (char) (plainText.charAt(j) - (26 - key));
@@ -36,8 +36,8 @@ public class CaesarCipher {
     }
 
 
-    // REQUIRES:
-    // MODIFIES:
+    // REQUIRES: key to be >= 0 and <= 26
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: decrypts user input with given key
     public static String decryptCipher(String cipherText, int key) {
         StringBuilder buildEncryptedMessage = new StringBuilder();
@@ -67,7 +67,6 @@ public class CaesarCipher {
 
 
     // REQUIRES: key to be >= 0 and <= 26
-    // MODIFIES:
     // EFFECTS: checks valid key input from user
     public static boolean validKey(int key) {
         return (key <= 26 && key >= 0);
