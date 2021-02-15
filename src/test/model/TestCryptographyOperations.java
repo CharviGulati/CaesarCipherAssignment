@@ -1,12 +1,11 @@
 package model;
 
-// TestCryptographyOperations is the test class for the CryptographyOperations class in the model package
-// Properly tests all the getters and setters in that class
-
-
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+// TestCryptographyOperations is the test class for the CryptographyOperations class in the model package
+// Properly tests all the getters and setters in that class
 
 public class TestCryptographyOperations {
 

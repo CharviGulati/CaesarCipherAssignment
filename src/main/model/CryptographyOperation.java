@@ -1,10 +1,9 @@
 package model;
 
+import java.util.Date;
 
 // CryptographyOperation class is a class of the object CryptographyOperation that contains all fields needed
 // for the operations. This contains all the getters and setters for the program
-
-import java.util.Date;
 
 public class CryptographyOperation {
 

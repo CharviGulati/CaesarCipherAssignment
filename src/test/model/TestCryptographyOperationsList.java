@@ -1,25 +1,24 @@
 package model;
 
-// The TestCryptographyOperationsList class tests the CryptographyOperationList class and all the methods in it including
-// addOperation to the array, removeOperations form the array, and filter encryption and decryption operations
-
-
 import org.junit.jupiter.api.Test;
 import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
+
+// The TestCryptographyOperationsList class tests the CryptographyOperationList class and all the methods in it
+// including addOperation to the array, removeOperations form the array, and filter encryption and decryption operations
 
 public class TestCryptographyOperationsList {
 
     @Test
     public void testAddOperation() {
-        CryptographyOperation cryptographyOperation = new CryptographyOperation("Caesar Cipher Encryption", new Date(),
-                "jkjkjk", "Hello!", 0, 000);
+        CryptographyOperation cryptographyOperation = new CryptographyOperation("Caesar Cipher Encryption",
+                new Date(), "jkjkjk", "Hello!", 0, 000);
 
-        CryptographyOperation cryptographyOperationTwo = new CryptographyOperation("Caesar Cipher Encryption", new Date(),
-                "hihihi", "Hello World", 5, 111);
+        CryptographyOperation cryptographyOperationTwo = new CryptographyOperation("Caesar Cipher Encryption",
+                new Date(), "hihihi", "Hello World", 5, 111);
 
-        CryptographyOperation cryptographyOperationThree = new CryptographyOperation("Caesar Cipher Decryption", new Date(),
-                "jksuieb", "How are you!", 26, 8364);
+        CryptographyOperation cryptographyOperationThree = new CryptographyOperation("Caesar Cipher Decryption",
+                new Date(), "jksuieb", "How are you!", 26, 8364);
 
         // this object has an array list in it
         CryptographyOperationsList newList = new CryptographyOperationsList();
@@ -35,14 +34,14 @@ public class TestCryptographyOperationsList {
 
     @Test
     public void testRemoveOperation(){
-        CryptographyOperation cryptographyOperation = new CryptographyOperation("Caesar Cipher Encryption", new Date(),
-                "jkjkjk", "Hello!", 0, 000);
+        CryptographyOperation cryptographyOperation = new CryptographyOperation("Caesar Cipher Encryption",
+                new Date(), "jkjkjk", "Hello!", 0, 000);
 
-        CryptographyOperation cryptographyOperationTwo = new CryptographyOperation("Caesar Cipher Encryption", new Date(),
-                "hihihi", "Hello World", 5, 111);
+        CryptographyOperation cryptographyOperationTwo = new CryptographyOperation("Caesar Cipher Encryption",
+                new Date(), "hihihi", "Hello World", 5, 111);
 
-        CryptographyOperation cryptographyOperationThree = new CryptographyOperation("Caesar Cipher Decryption", new Date(),
-                "jksuieb", "How are you!", 26, 8364);
+        CryptographyOperation cryptographyOperationThree = new CryptographyOperation("Caesar Cipher Decryption",
+                new Date(), "jksuieb", "How are you!", 26, 8364);
 
         // this object has an array list in it
         CryptographyOperationsList cryptographyOperationsList = new CryptographyOperationsList();

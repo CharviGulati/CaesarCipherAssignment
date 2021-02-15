@@ -1,11 +1,10 @@
 package model;
 
-// testCaesarCipherEncryption is the testing class for the Caesar Cipher class. Tests accurate
-// string encryption and decryption and validity of user input of keys
-
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+// testCaesarCipherEncryption is the testing class for the Caesar Cipher class. Tests accurate
+// string encryption and decryption and validity of user input of keys
 
 class TestCaesarCipher {
 

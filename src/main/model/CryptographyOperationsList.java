@@ -1,11 +1,10 @@
 package model;
 
-// CryptographyOperationsList is the class that adds, removes, and filters CryptographyOperations
-// depending on user request in UI.GetUserInput
-
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+// CryptographyOperationsList is the class that adds, removes, and filters CryptographyOperations
+// depending on user request in UI.GetUserInput
 
 public class CryptographyOperationsList {
 

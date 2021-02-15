@@ -1,8 +1,5 @@
 package ui;
 
-// GetUserInput gets user input on various questions needed for the program to run successfully
-
-
 import model.CryptographyOperation;
 import model.CryptographyOperationsList;
 import model.CaesarCipher;
@@ -11,6 +8,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+
+// GetUserInput gets user input on various questions needed for the program to run successfully
 
 public class GetUserInput {
 
@@ -54,7 +53,7 @@ public class GetUserInput {
             System.out.println("Type the ID of the entry you would like to remove: \n");
             int userIDInput = scanner.nextInt();
             cryptographyOperationsList.removeOperation(userIDInput);
-            System.out.println("Entry with the ID " + userIDInput + " has been deleted form file\n\n");
+            System.out.println("Entry with the ID " + userIDInput + " has been deleted from file\n\n");
         } else if (choice == 4) {
             handleUserEncryptionRequest();
         } else if (choice == 5) {
@@ -167,7 +166,7 @@ public class GetUserInput {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 System.out.println(encryptionOperation.getType()
                         + ": You entered the cipher text: "
-                        + encryptionOperation.getPlaintext()
+                        + encryptionOperation.getCiphertext()
                         + ", with key: "
                         + encryptionOperation.getKey()
                         + " with ID: "
