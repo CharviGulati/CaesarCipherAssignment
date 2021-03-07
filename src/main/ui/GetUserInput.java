@@ -61,38 +61,54 @@ public class GetUserInput {
         } else if (choice == 4) {
             printDecryptionOperations();
         } else if (choice == 5) {
-            System.out.println("Type the ID of the entry you would like to remove: \n");
-            int userIDInput = scanner.nextInt();
-            cryptographyOperationsList.removeOperation(userIDInput);
-            System.out.println("Entry with the ID " + userIDInput + " has been deleted from file\n\n");
+            removeEntry();
         } else if (choice == 6) {
-            try {
-                writeCryptographyOperationsToFile();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found: " + e.getMessage());
-            }
-            System.out.println("\nSaved operations to file!");
-            System.out.println("\n---------------------------------------------------------------\n");
+            saveCryptographyOperationToFile();
         } else if (choice == 7) {
-            try {
-                printEncryptionOperations();
-                printDecryptionOperations();
-                cryptographyOperationsList = jsonReader.read();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("\nThese are all the saved operations");
-            System.out.println("\n----------------------------------------------------------------\n");
+            loadPreviousTextFile();
         } else if (choice == 8) {
             removeEntryFromTextFile();
-            System.out.println("Entry has been deleted.");
-            System.out.println("\n----------------------------------------------------------------\n");
         } else if (choice == 9) {
             System.out.println("\nThank you for using the Caesar Cipher. Exiting program now.");
             System.exit(0);
         }
     }
 
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
+    // EFFECTS: removes entry from Arraylist
+    public static void removeEntry() {
+        System.out.println("Type the ID of the entry you would like to remove: \n");
+        int userIDInput = scanner.nextInt();
+        cryptographyOperationsList.removeOperation(userIDInput);
+        System.out.println("Entry with the ID " + userIDInput + " has been deleted from file\n\n");
+    }
+
+
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
+    // EFFECTS: saves cryptographyOperation to text file
+    public static void saveCryptographyOperationToFile() {
+        try {
+            writeCryptographyOperationsToFile();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        }
+        System.out.println("\nSaved operations to file!");
+        System.out.println("\n---------------------------------------------------------------\n");
+    }
+
+
+    // EFFECTS: loads previous cryptographyOperation from text file
+    public static void loadPreviousTextFile() {
+        try {
+            printEncryptionOperations();
+            printDecryptionOperations();
+            cryptographyOperationsList = jsonReader.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("\nThese are all the saved operations");
+        System.out.println("\n----------------------------------------------------------------\n");
+    }
 
 
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
@@ -208,12 +224,17 @@ public class GetUserInput {
         }
     }
 
+
+
+    // EFFECTS: adds entry from Arraylist to text file
     public static void writeCryptographyOperationsToFile() throws FileNotFoundException {
         writer.open();
         writer.write(cryptographyOperationsList);
         writer.close();
     }
 
+    // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
+    // EFFECTS: removes entry from Arraylist and text file permanently
     public static void removeEntryFromTextFile() {
         System.out.println("What is the ID of the entry you would like to delete?");
         int userIdInput = scanner.nextInt();
@@ -225,6 +246,8 @@ public class GetUserInput {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Entry has been deleted.");
+        System.out.println("\n----------------------------------------------------------------\n");
     }
 
 }
