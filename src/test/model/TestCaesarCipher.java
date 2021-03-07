@@ -52,6 +52,7 @@ class TestCaesarCipher {
         String plainTextSeven = "!@#$%!";
         assertEquals("!@#$%!", CaesarCipher.encryptCipher(plainTextSeven, 5));
         assertEquals("!@#$%!", CaesarCipher.encryptCipher(plainTextSeven, 17));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextSeven, -19));
     }
 
     @Test

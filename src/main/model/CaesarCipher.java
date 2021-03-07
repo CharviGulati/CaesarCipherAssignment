@@ -17,13 +17,13 @@ public class CaesarCipher {
         if (validKey(key)) {
             for (int j = 0; j < lengthMsg; j++) {
                 char msgToChar = plainText.charAt(j);
-                if ((msgToChar >= 'a' && msgToChar <= 'z') && Character.isLetter(msgToChar)) {
+                if ((msgToChar >= 'a' && msgToChar <= 'z')) {
                     msgToChar = (char) (plainText.charAt(j) + key);
                     if (msgToChar > 'z') {
                         msgToChar = (char) (plainText.charAt(j) - (26 - key));
                     }
                 }
-                if ((msgToChar >= 'A' && msgToChar <= 'Z') && Character.isLetter(msgToChar)) {
+                if ((msgToChar >= 'A' && msgToChar <= 'Z')) {
                     msgToChar = (char) (plainText.charAt(j) + key);
                     if (msgToChar > 'Z') {
                         msgToChar = (char) (plainText.charAt(j) - (26 - key));
@@ -47,13 +47,13 @@ public class CaesarCipher {
         if (validKey(key)) {
             for (int j = 0; j < lengthMsg; j++) {
                 char msgToChar = cipherText.charAt(j);
-                if (msgToChar >= 'a' && msgToChar <= 'z' && Character.isLetter(msgToChar)) {
+                if (msgToChar >= 'a' && msgToChar <= 'z') {
                     msgToChar = (char) (cipherText.charAt(j) - key);
                     if (msgToChar < 'a') {
                         msgToChar = (char) (cipherText.charAt(j) + (26 - key));
                     }
                 }
-                if (msgToChar >= 'A' && msgToChar <= 'Z' && Character.isLetter(msgToChar)) {
+                if (msgToChar >= 'A' && msgToChar <= 'Z') {
                     msgToChar = (char) (cipherText.charAt(j) - key);
                     if (msgToChar < 'A') {
                         msgToChar = (char) (cipherText.charAt(j) + (26 - key));
