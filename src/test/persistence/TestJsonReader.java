@@ -1,17 +1,10 @@
 package persistence;
 
-import model.CryptographyOperation;
 import model.CryptographyOperationsList;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,23 +51,20 @@ public class TestJsonReader {
         }
     }
 
-//    @Test
-//    public void testDateTimeParseException() {
-//        JsonReader reader = new JsonReader("./data/TestingData.txt");
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("id", 1);
-//        jsonObject.put("key", 1);
-//        jsonObject.put("dateTime", "invalid date time here!");
-//        jsonObject.put("plaintext", "Hello");
-//        jsonObject.put("ciphertext", "HIIIII");
-//        jsonObject.put("type", "encryption");
-//        CryptographyOperationsList cryptographyOperationsList = new CryptographyOperationsList();
-//        reader.addCryptographyOperation(cryptographyOperationsList, jsonObject);
-////        Throwable exception = assertThrows(ParseException.class, () -> reader.addCryptographyOperation(cryptographyOperationsList, jsonObject));
-////        assertEquals("expected messages", exception.getMessage());
-//
-//        fail("Format difference");
-//    }
+    @Test
+    public void testDateTimeParseException() {
+        JsonReader reader = new JsonReader("./data/TestingData.txt");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", 1);
+        jsonObject.put("key", 1);
+        jsonObject.put("dateTime", "invalid date time here!");
+        jsonObject.put("plaintext", "Hello");
+        jsonObject.put("ciphertext", "HIIIII");
+        jsonObject.put("type", "encryption");
+        CryptographyOperationsList cryptographyOperationsList = new CryptographyOperationsList();
+        reader.addCryptographyOperation(cryptographyOperationsList, jsonObject);
+        assertNull(cryptographyOperationsList.getCryptographyOperations().get(0).getDateTime());
+    }
 
 
 }
