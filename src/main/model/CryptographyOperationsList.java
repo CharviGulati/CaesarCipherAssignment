@@ -1,12 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 // CryptographyOperationsList is the class that adds, removes, and filters CryptographyOperations
 // depending on user request in UI.GetUserInput
 
-public class CryptographyOperationsList {
+public class CryptographyOperationsList implements Writable {
 
     private ArrayList<CryptographyOperation> cryptographyOperations;
 
@@ -46,5 +50,26 @@ public class CryptographyOperationsList {
     public ArrayList<CryptographyOperation> getDecryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
                 .filter(encOp -> encOp.getType().equals("Caesar Cipher Decryption")).collect(Collectors.toList());
+    }
+
+    public ArrayList<CryptographyOperation> getCryptographyOperations() {
+        return this.cryptographyOperations;
+    }
+
+    private JSONArray cryptographyOperationsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (CryptographyOperation cryptographyOperation : cryptographyOperations) {
+            jsonArray.put(cryptographyOperation.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("cryptographyOperations", cryptographyOperationsToJson());
+        return json;
     }
 }

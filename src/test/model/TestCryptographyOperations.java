@@ -10,6 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestCryptographyOperations {
 
     @Test
+    public void testConstructor() {
+        Date testDate = new Date();
+        CryptographyOperation cryptographyOperation = new CryptographyOperation("encryption", testDate, "jkjk",
+                "hihi", 2, 1);
+
+        assertEquals("encryption", cryptographyOperation.getType());
+        assertEquals(testDate, cryptographyOperation.getDateTime());
+        assertEquals("jkjk", cryptographyOperation.getCiphertext());
+        assertEquals("hihi", cryptographyOperation.getPlaintext());
+        assertEquals(2, cryptographyOperation.getKey());
+        assertEquals(1, cryptographyOperation.getId());
+    }
+
+    @Test
     public void testMutators() {
 
         Date testDate = new Date();
