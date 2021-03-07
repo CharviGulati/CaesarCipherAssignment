@@ -56,6 +56,20 @@ class TestCaesarCipher {
         assertEquals("!@#$%!", CaesarCipher.encryptCipher(plainTextSeven, 5));
         assertEquals("!@#$%!", CaesarCipher.encryptCipher(plainTextSeven, 17));
         assertEquals("", CaesarCipher.encryptCipher(plainTextSeven, -19));
+
+        String plainTextEight = "AZ";
+        assertEquals("BA", CaesarCipher.encryptCipher(plainTextEight, 1));
+        assertEquals("AZ", CaesarCipher.encryptCipher(plainTextEight, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextEight, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextEight, 27));
+
+        String plainTextNine = "az";
+        assertEquals("ba", CaesarCipher.encryptCipher(plainTextNine, 1));
+        assertEquals("az", CaesarCipher.encryptCipher(plainTextNine, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextNine, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextNine, 27));
+
+
     }
 
     @Test
@@ -105,6 +119,18 @@ class TestCaesarCipher {
         String plainTextSeven = "!@#$%!";
         assertEquals("!@#$%!", CaesarCipher.decryptCipher(plainTextSeven, 12));
         assertEquals("!@#$%!", CaesarCipher.decryptCipher(plainTextSeven, 22));
+
+        String plainTextEight = "AZ";
+        assertEquals("ZY", CaesarCipher.decryptCipher(plainTextEight, 1));
+        assertEquals("AZ", CaesarCipher.decryptCipher(plainTextEight, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextEight, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextEight, 27));
+
+        String plainTextNine = "az";
+        assertEquals("zy", CaesarCipher.decryptCipher(plainTextNine, 1));
+        assertEquals("az", CaesarCipher.decryptCipher(plainTextNine, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextNine, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextNine, 27));
 
     }
 
