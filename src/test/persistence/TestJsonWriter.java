@@ -71,7 +71,6 @@ public class TestJsonWriter {
 
             assertEquals(1, list.getCryptographyOperations().size());
 
-
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }
