@@ -15,6 +15,9 @@ class TestCaesarCipher {
         assertEquals("abc", CaesarCipher.encryptCipher(plainText, 26));
         assertEquals("abc", CaesarCipher.encryptCipher(plainText, 0));
         assertEquals("bcd", CaesarCipher.encryptCipher(plainText, 1));
+        assertEquals("", CaesarCipher.encryptCipher(plainText, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainText, 27));
+        assertEquals("", CaesarCipher.encryptCipher(plainText, 40));
 
         String plainTextTwo = "ABC";
         assertEquals("CDE", CaesarCipher.encryptCipher(plainTextTwo, 2));
@@ -62,6 +65,9 @@ class TestCaesarCipher {
         assertEquals("cde", CaesarCipher.decryptCipher(plainText, 26));
         assertEquals("cde", CaesarCipher.decryptCipher(plainText, 0));
         assertEquals("bcd", CaesarCipher.decryptCipher(plainText, 1));
+        assertEquals("", CaesarCipher.decryptCipher(plainText, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainText, 27));
+        assertEquals("", CaesarCipher.decryptCipher(plainText, 40));
 
         String plainTextTwo = "CDE";
         assertEquals("ABC", CaesarCipher.decryptCipher(plainTextTwo, 2));
