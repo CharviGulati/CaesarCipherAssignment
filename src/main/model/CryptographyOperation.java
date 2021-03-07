@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Date;
 
 // CryptographyOperation class is a class of the object CryptographyOperation that contains all fields needed
 // for the operations. This contains all the getters and setters for the program
 
-public class CryptographyOperation {
+public class CryptographyOperation implements Writable {
 
     private int id;                         // ID for each encryption/decryption entry
     private String type;                    // type of cipher
@@ -75,4 +78,18 @@ public class CryptographyOperation {
         this.ciphertext = ciphertext;
     }
 
+    /**
+     * @return JSON representation of the CryptographyOperation Object
+     */
+    @Override
+    public JSONObject toJson() {
+        JSONObject cryptographyOperation = new JSONObject();
+        cryptographyOperation.put("id", this.id);
+        cryptographyOperation.put("key", this.key);
+        cryptographyOperation.put("plaintext", this.plaintext);
+        cryptographyOperation.put("type", this.type);
+        cryptographyOperation.put("dateTime", this.dateTime);
+        cryptographyOperation.put("ciphertext", this.ciphertext);
+        return cryptographyOperation;
+    }
 }

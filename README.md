@@ -38,3 +38,12 @@ In the context fo this program the user stories are:
 - As a user I want to be able to see what time and date each decryption was
 - As a user I want to be able to remove an encryption entry
 - As a user I want to be able to remove a decryption entry
+
+
+### Phase 2 User Stories
+
+In the context for this program the user stories are:
+- As a user I want my encryption operations to be saved to a file
+- As a user, when I start the application, I want to be given the option to load my encryption 
+operations list from file.
+- As a user I want the option to remove a encryption operation permanently from file

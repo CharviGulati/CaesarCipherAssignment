@@ -5,6 +5,8 @@ package model;
 
 public class CaesarCipher {
 
+    // initialise a casesar cipher constructor to get full coveagem in tests
+
 
     // REQUIRES: key to be >= 0 and <= 26
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
