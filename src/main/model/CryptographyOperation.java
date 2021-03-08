@@ -29,7 +29,7 @@ public class CryptographyOperation implements Writable {
     }
 
 
-// All the required getters and setts
+    // All getters and setters for the class
     public int getId() {
         return id;
     }
@@ -78,9 +78,9 @@ public class CryptographyOperation implements Writable {
         this.ciphertext = ciphertext;
     }
 
-    /**
-     * @return JSON representation of the CryptographyOperation Object
-     */
+    
+    // MODIFIES: JSON Object
+    // EFFECTS: JSON representation of the CryptographyOperation Object
     @Override
     public JSONObject toJson() {
         JSONObject cryptographyOperation = new JSONObject();

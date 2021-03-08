@@ -36,7 +36,6 @@ public class CryptographyOperationsList implements Writable {
 
 
     // REQUIRES: ArrayList<CryptographyOperation> cryptographyOperations to not be empty
-    // MODIFIES:
     // EFFECTS: filters the array list to find only EncryptionOperations
     public ArrayList<CryptographyOperation> getEncryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
@@ -45,27 +44,32 @@ public class CryptographyOperationsList implements Writable {
 
 
     // REQUIRES: ArrayList<CryptographyOperation> cryptographyOperations to not be empty
-    // MODIFIES:
     // EFFECTS: filters the array list to find only DecryptionOperations
     public ArrayList<CryptographyOperation> getDecryptionOperations() {
         return (ArrayList<CryptographyOperation>) cryptographyOperations.stream()
                 .filter(encOp -> encOp.getType().equals("Caesar Cipher Decryption")).collect(Collectors.toList());
     }
 
+
+    // EFFECTS: returns cryptographyOperation ArrayList
     public ArrayList<CryptographyOperation> getCryptographyOperations() {
         return this.cryptographyOperations;
     }
 
+
+    // MODIFIES: JSON Array
+    // EFFECTS: puts cryptographyOperation from the ArrayList to a JSON Array
     private JSONArray cryptographyOperationsToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (CryptographyOperation cryptographyOperation : cryptographyOperations) {
             jsonArray.put(cryptographyOperation.toJson());
         }
-
         return jsonArray;
     }
 
+
+    // MODIFIES: JSON Object
+    // EFFECTS: puts cryptographyOperation from the ArrayList to a JSON Object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

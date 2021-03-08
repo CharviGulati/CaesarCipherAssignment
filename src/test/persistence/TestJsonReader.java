@@ -40,7 +40,7 @@ public class TestJsonReader {
         try {
             CryptographyOperationsList cryptographyOperationsList = reader.read();
             assertEquals("encryption", cryptographyOperationsList.getCryptographyOperations().get(0).getType());
-            assertEquals("Sat Mar 06 22:53:05 PST 2021", cryptographyOperationsList.
+            assertEquals("Sun Mar 07 17:03:23 PST 2021", cryptographyOperationsList.
                     getCryptographyOperations().get(0).getDateTime().toString());
             assertEquals("jk", cryptographyOperationsList.getCryptographyOperations().get(0).getCiphertext());
             assertEquals("hi", cryptographyOperationsList.getCryptographyOperations().get(0).getPlaintext());
