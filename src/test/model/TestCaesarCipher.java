@@ -69,6 +69,30 @@ class TestCaesarCipher {
         assertEquals("", CaesarCipher.encryptCipher(plainTextNine, -1));
         assertEquals("", CaesarCipher.encryptCipher(plainTextNine, 27));
 
+        String plainTextTen = "a";
+        assertEquals("b", CaesarCipher.encryptCipher(plainTextTen, 1));
+        assertEquals("a", CaesarCipher.encryptCipher(plainTextTen, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextTen, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextTen, 27));
+
+        String plainTextEleven = "z";
+        assertEquals("a", CaesarCipher.encryptCipher(plainTextEleven, 1));
+        assertEquals("z", CaesarCipher.encryptCipher(plainTextEleven, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextEleven, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextEleven, 27));
+
+        String plainTextTwelve = "a!";
+        assertEquals("b!", CaesarCipher.encryptCipher(plainTextTwelve, 1));
+        assertEquals("a!", CaesarCipher.encryptCipher(plainTextTwelve, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextTwelve, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextTwelve, 27));
+
+        String plainTextThirteen = "z!";
+        assertEquals("a!", CaesarCipher.encryptCipher(plainTextThirteen, 1));
+        assertEquals("z!", CaesarCipher.encryptCipher(plainTextThirteen, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextThirteen, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextThirteen, 27));
+
 
     }
 
@@ -131,6 +155,30 @@ class TestCaesarCipher {
         assertEquals("az", CaesarCipher.decryptCipher(plainTextNine, 0));
         assertEquals("", CaesarCipher.decryptCipher(plainTextNine, -1));
         assertEquals("", CaesarCipher.decryptCipher(plainTextNine, 27));
+
+        String plainTextTen = "a";
+        assertEquals("z", CaesarCipher.decryptCipher(plainTextTen, 1));
+        assertEquals("a", CaesarCipher.decryptCipher(plainTextTen, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextTen, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextTen, 27));
+
+        String plainTextEleven = "z";
+        assertEquals("y", CaesarCipher.decryptCipher(plainTextEleven, 1));
+        assertEquals("z", CaesarCipher.decryptCipher(plainTextEleven, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextEleven, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextEleven, 27));
+
+        String plainTextTwelve = "a!";
+        assertEquals("z!", CaesarCipher.decryptCipher(plainTextTwelve, 1));
+        assertEquals("a!", CaesarCipher.decryptCipher(plainTextTwelve, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextTwelve, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextTwelve, 27));
+
+        String plainTextThirteen = "z!";
+        assertEquals("y!", CaesarCipher.decryptCipher(plainTextThirteen, 1));
+        assertEquals("z!", CaesarCipher.decryptCipher(plainTextThirteen, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextThirteen, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextThirteen, 27));
 
     }
 

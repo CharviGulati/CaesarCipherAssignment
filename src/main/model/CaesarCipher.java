@@ -48,6 +48,7 @@ public class CaesarCipher {
             for (int j = 0; j < lengthMsg; j++) {
                 char msgToChar = cipherText.charAt(j);
                 if (msgToChar >= 'a' && msgToChar <= 'z') {
+                //if (msgToChar >= 'a' && msgToChar <= 'z' && Character.isLetter(msgToChar)) {
                     msgToChar = (char) (cipherText.charAt(j) - key);
                     if (msgToChar < 'a') {
                         msgToChar = (char) (cipherText.charAt(j) + (26 - key));

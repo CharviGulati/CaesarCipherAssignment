@@ -8,7 +8,6 @@ with his allies without being caught by his enemies. I chose to do this for my p
 in furthering my understanding of cryptography.
 
 **My hope for this project long-term are:**
-- Implement the rail-fence cipher. 
 - Have the user upload a simple text file to encrypt/decrypt
 - Be able to break a caesar cipher using letter frequency analysis of a ciphertext sample
 
@@ -28,7 +27,6 @@ encrypted message.
 
 
 ### User Stories
-
 In the context fo this program the user stories are:
 - As a user I want to be able to encrypt a sentence
 - As a user I want to be able to decrypt a sentence
@@ -41,9 +39,7 @@ In the context fo this program the user stories are:
 
 
 ### Phase 2 User Stories
-
-In the context for this program the user stories are:
 - As a user I want my encryption operations to be saved to a file
 - As a user, when I start the application, I want to be given the option to load my encryption 
 operations list from file.
-- As a user I want the option to remove a encryption operation permanently from file
+- As a user I want the option to remove a cryptography operation permanently from file

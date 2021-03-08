@@ -69,8 +69,7 @@ public class GetUserInput {
         } else if (choice == 8) {
             removeEntryFromTextFile();
         } else if (choice == 9) {
-            System.out.println("\nThank you for using the Caesar Cipher. Exiting program now.");
-            System.exit(0);
+            exitProgram();
         }
     }
 
@@ -100,9 +99,9 @@ public class GetUserInput {
     // EFFECTS: loads previous cryptographyOperation from text file
     public static void loadPreviousTextFile() {
         try {
+            cryptographyOperationsList = jsonReader.read();
             printEncryptionOperations();
             printDecryptionOperations();
-            cryptographyOperationsList = jsonReader.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -248,6 +247,17 @@ public class GetUserInput {
         }
         System.out.println("Entry has been deleted.");
         System.out.println("\n----------------------------------------------------------------\n");
+    }
+
+    public static void exitProgram() {
+        System.out.println("Would you like to save your cryptography operations before exiting?"
+                + "\nType 'yes' or 'no'");
+        String userInputSaveOp = scanner.nextLine();
+        if (userInputSaveOp.equals("yes")) {
+            saveCryptographyOperationToFile();
+        }
+        System.out.println("\nThank you for using the Caesar Cipher. Exiting program now.");
+        System.exit(0);
     }
 
 }
