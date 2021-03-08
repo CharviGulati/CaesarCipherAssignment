@@ -32,12 +32,12 @@ public class TestJsonWriter {
     void testWriterEmptyCryptographyOperationsList() {
         try {
             CryptographyOperationsList list = new CryptographyOperationsList();
-            JsonWriter writer = new JsonWriter("./data/TestingData.txt");
+            JsonWriter writer = new JsonWriter("./data/TestEmpty.txt");
             writer.open();
             writer.write(list);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/TestingData.txt");
+            JsonReader reader = new JsonReader("./data/TestEmpty.txt");
             assertEquals(0, reader.read().getCryptographyOperations().size());
 
         } catch (IOException e) {
@@ -54,12 +54,12 @@ public class TestJsonWriter {
                     testDate, "jk", "hi", 2, 5);
             list.addOperation(co);
 
-            JsonWriter writer = new JsonWriter("./data/CaesarCipher.json");
+            JsonWriter writer = new JsonWriter("./data/TestCaesarCipher.json");
             writer.open();
             writer.write(list);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/CaesarCipher.json");
+            JsonReader reader = new JsonReader("./data/TestCaesarCipher.json");
             list = reader.read();
             assertEquals("encryption", list.getCryptographyOperations().get(0).getType());
             assertEquals(testDate.toString(), list.getCryptographyOperations().get(0).getDateTime().toString());

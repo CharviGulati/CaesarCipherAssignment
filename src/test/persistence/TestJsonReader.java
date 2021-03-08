@@ -24,8 +24,7 @@ public class TestJsonReader {
 
     @Test
     public void testReaderEmptyCryptographyOperationsList() {
-
-        JsonReader reader = new JsonReader("./data/TestingData.txt");
+        JsonReader reader = new JsonReader("./data/TestEmpty.txt");
         try {
             CryptographyOperationsList cryptographyOperationsList = reader.read();
             assertEquals(0, cryptographyOperationsList.getCryptographyOperations().size());
@@ -36,12 +35,11 @@ public class TestJsonReader {
 
     @Test
     public void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/CaesarCipher.json");
+        JsonReader reader = new JsonReader("./data/TestCaesarCipher.json");
         try {
             CryptographyOperationsList cryptographyOperationsList = reader.read();
             assertEquals("encryption", cryptographyOperationsList.getCryptographyOperations().get(0).getType());
-            assertEquals("Sun Mar 07 17:03:23 PST 2021", cryptographyOperationsList.
-                    getCryptographyOperations().get(0).getDateTime().toString());
+            assertNotNull(cryptographyOperationsList.getCryptographyOperations().get(0).getDateTime());
             assertEquals("jk", cryptographyOperationsList.getCryptographyOperations().get(0).getCiphertext());
             assertEquals("hi", cryptographyOperationsList.getCryptographyOperations().get(0).getPlaintext());
             assertEquals(5, cryptographyOperationsList.getCryptographyOperations().get(0).getId());
@@ -53,7 +51,7 @@ public class TestJsonReader {
 
     @Test
     public void testDateTimeParseException() {
-        JsonReader reader = new JsonReader("./data/TestingData.txt");
+        JsonReader reader = new JsonReader("./data/TestEmpty.txt");
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", 1);
         jsonObject.put("key", 1);
