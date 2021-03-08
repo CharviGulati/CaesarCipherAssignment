@@ -93,6 +93,12 @@ class TestCaesarCipher {
         assertEquals("", CaesarCipher.encryptCipher(plainTextThirteen, -1));
         assertEquals("", CaesarCipher.encryptCipher(plainTextThirteen, 27));
 
+        String plainTextFourteen = "!";
+        assertEquals("!", CaesarCipher.encryptCipher(plainTextFourteen, 10));
+        assertEquals("!", CaesarCipher.encryptCipher(plainTextFourteen, 0));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextFourteen, -1));
+        assertEquals("", CaesarCipher.encryptCipher(plainTextFourteen, 27));
+
 
     }
 
@@ -179,6 +185,12 @@ class TestCaesarCipher {
         assertEquals("z!", CaesarCipher.decryptCipher(plainTextThirteen, 0));
         assertEquals("", CaesarCipher.decryptCipher(plainTextThirteen, -1));
         assertEquals("", CaesarCipher.decryptCipher(plainTextThirteen, 27));
+
+        String plainTextFourteen = "!";
+        assertEquals("!", CaesarCipher.decryptCipher(plainTextFourteen, 10));
+        assertEquals("!", CaesarCipher.decryptCipher(plainTextFourteen, 0));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextFourteen, -1));
+        assertEquals("", CaesarCipher.decryptCipher(plainTextFourteen, 27));
 
     }
 
