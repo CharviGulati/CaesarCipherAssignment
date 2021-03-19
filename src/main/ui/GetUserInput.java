@@ -19,7 +19,7 @@ public class GetUserInput {
 
     private static Scanner scanner = new Scanner(System.in);
     private static CryptographyOperationsList cryptographyOperationsList = new CryptographyOperationsList();
-    private static JsonWriter writer = new JsonWriter("./data/CaesarCipher.txt");  // changed
+    private static JsonWriter writer = new JsonWriter("./data/CaesarCipher.txt");
     private static JsonReader jsonReader = new JsonReader("./data/CaesarCipher.txt");
 
 
@@ -76,6 +76,9 @@ public class GetUserInput {
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: removes entry from Arraylist
     public static void removeEntry() {
+        System.out.println("These are all your entries, with their specific ID number.\n");
+        printModifiedEncryptionOperations();
+        printModifiedDecryptionOperations();
         System.out.println("Type the ID of the entry you would like to remove: \n");
         int userIDInput = scanner.nextInt();
         cryptographyOperationsList.removeOperation(userIDInput);
@@ -181,6 +184,7 @@ public class GetUserInput {
         System.out.println("\nEncryption Operations currently recorded: ");
         if (cryptographyOperationsList.getEncryptionOperations().size() == 0) {
             System.out.println("\nNo Encryption operations recorded\n");
+            System.out.print("\n-----------------------------------------------------------------\n");
         } else {
             for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getEncryptionOperations()) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -194,7 +198,22 @@ public class GetUserInput {
                         + " at "
                         + dateFormat.format(encryptionOperation.getDateTime()));
             }
-            //System.out.print("\n-----------------------------------------------------------------\n");
+        }
+    }
+
+    private static void printModifiedEncryptionOperations() {
+        System.out.println("\nEncryption Operations currently recorded: ");
+        if (cryptographyOperationsList.getEncryptionOperations().size() == 0) {
+            System.out.println("\nNo Encryption operations recorded\n");
+            System.out.print("\n-----------------------------------------------------------------\n");
+        } else {
+            for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getEncryptionOperations()) {
+                System.out.println(encryptionOperation.getType()
+                        + ": You entered the cipher text: "
+                        + encryptionOperation.getPlaintext()
+                        + " that was given the ID: "
+                        + encryptionOperation.getId());
+            }
         }
     }
 
@@ -206,6 +225,7 @@ public class GetUserInput {
         System.out.println("\nDecryption Operations currently recorded: ");
         if (cryptographyOperationsList.getDecryptionOperations().size() == 0) {
             System.out.println("\nNo decryption operations recorded\n");
+            System.out.print("\n-----------------------------------------------------------------\n");
         } else {
             for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getDecryptionOperations()) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -219,7 +239,23 @@ public class GetUserInput {
                         + " at "
                         + dateFormat.format(encryptionOperation.getDateTime()));
             }
-            //System.out.print("\n-----------------------------------------------------------------\n");
+        }
+    }
+
+    // EFFECTS: prints previous user decryption operations
+    private static void printModifiedDecryptionOperations() {
+        System.out.println("\nDecryption Operations currently recorded: ");
+        if (cryptographyOperationsList.getDecryptionOperations().size() == 0) {
+            System.out.println("\nNo decryption operations recorded\n");
+            System.out.print("\n-----------------------------------------------------------------\n");
+        } else {
+            for (CryptographyOperation encryptionOperation : cryptographyOperationsList.getDecryptionOperations()) {
+                System.out.println(encryptionOperation.getType()
+                        + ": You entered the cipher text: "
+                        + encryptionOperation.getCiphertext()
+                        + " that was given the ID: "
+                        + encryptionOperation.getId());
+            }
         }
     }
 
@@ -235,6 +271,8 @@ public class GetUserInput {
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: removes entry from Arraylist and text file permanently
     public static void removeEntryFromTextFile() {
+        System.out.println("These are all your entries, with their specific ID number.\n");
+        // print out all the saved entries with the text and ID number
         System.out.println("What is the ID of the entry you would like to delete?");
         int userIdInput = scanner.nextInt();
 

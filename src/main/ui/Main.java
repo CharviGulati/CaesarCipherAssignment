@@ -6,9 +6,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GetUserInput.introductionToProgram();
-        while (true) {
-            GetUserInput.menuOperations();
-        }
+        CaesarCipherScreen caesarCipherScreen = new CaesarCipherScreen();
+        caesarCipherScreen.setVisible(true);
+
+//        GetUserInput.introductionToProgram();
+//        while (true) {
+//            GetUserInput.menuOperations();
+//        }
     }
 }
