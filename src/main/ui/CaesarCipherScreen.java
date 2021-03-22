@@ -9,6 +9,7 @@ import persistence.JsonWriter;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -32,6 +33,7 @@ public class CaesarCipherScreen extends JFrame {
     private int selectedCryptographyOperationIndex;
 
 
+
     public CaesarCipherScreen() {
         super("Caesar Cipher");
         this.setContentPane(this.panelMain);
@@ -50,6 +52,23 @@ public class CaesarCipherScreen extends JFrame {
         loadPreviousCryptographyOps.setEnabled(true);
 
         setVisible(true);
+
+        //1. Create the frame.
+        JFrame frame = new JFrame("FrameDemo");
+
+//2. Optional: What happens when the frame closes?
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+//3. Create components and put them in the frame.
+//...create emptyLabel...
+//        frame.getContentPane().add() //(emptyLabel, BorderLayout.CENTER);
+
+//4. Size the frame.
+        frame.pack();
+
+//5. Show it.
+        frame.setVisible(true);
+
 
         encryptionButton.addActionListener(new ActionListener() {
             @Override
@@ -162,6 +181,7 @@ public class CaesarCipherScreen extends JFrame {
                 }
             }
         });
+
 
     }
 
