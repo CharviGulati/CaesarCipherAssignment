@@ -29,12 +29,12 @@ public class CaesarCipherScreen extends JFrame {
     private JTextField keyInput;
     private JList cryptographyOperationsJList;
     private JScrollPane scrollPane;
+    private JButton about;
     private CryptographyOperationsList cryptographyOperationsList;
     private DefaultListModel defaultListCryptOps;
     private static JsonWriter writer = new JsonWriter("./data/CaesarCipher.txt");
     private static JsonReader jsonReader = new JsonReader("./data/CaesarCipher.txt");
     private int selectedCryptographyOperationIndex;
-
 
 
     public CaesarCipherScreen() {
@@ -55,35 +55,24 @@ public class CaesarCipherScreen extends JFrame {
         loadPreviousCryptographyOps.setEnabled(true);
 
         setVisible(true);
-
-//        panelMain.setMaximumSize(new Dimension(100, 100));
-//        cryptographyOperationsJList.setMaximumSize(new Dimension(100, 100));
-//        super.setMaximizedBounds(new Rectangle(100, 200));
-
-//        JFrame jframe = new JFrame();
-//        super.setPreferredSize(new Dimension(400, 300));
-
-//        JScrollPane scrollPane1 = new JScrollPane(cryptographyOperationsJList);
-//        scrollPane1.setMaximumSize(new Dimension(200, 200));
-//        scrollPane1.setMinimumSize(new Dimension(200,200));
-//        panelMain.add(scrollPane1, BorderLayout.LINE_END);
-
-//        cryptographyOperationsJList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-
-//        cryptographyOperationsJList.setVisibleRowCount(5);
-        Dimension d = cryptographyOperationsJList.getPreferredSize();
-        d.width = 200;
-        d.height = 200;
-//        scrollPane = new JScrollPane(cryptographyOperationsJList);
-        scrollPane.setPreferredSize(d);
-        //cryptographyOperationsJList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        Dimension dimension = cryptographyOperationsJList.getPreferredSize();
+        dimension.width = 200;
+        dimension.height = 200;
+        scrollPane.setPreferredSize(dimension);
         cryptographyOperationsJList.setVisibleRowCount(-1);
+
+
 
         encryptionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 int encryptionKey = Integer.parseInt(keyInput.getText());
+                try {
+                    validKey(encryptionKey);
+                } catch (Exception exception) {
+                    infoBox("Please enter a key between [1 -26]", "Invalid Key!");
+                }
                 String plaintext = cryptographyInput.getText();
 
                 if (CaesarCipher.validKey(encryptionKey)) {
@@ -99,7 +88,6 @@ public class CaesarCipherScreen extends JFrame {
                             randomId);
                     cryptographyOperationsList.addOperation(cryptographyOperation);
                     refreshCryptographyOperationsList();
-// KEY VALIDITY
                 }
             }
         });
@@ -109,6 +97,13 @@ public class CaesarCipherScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 int decryptionKey = Integer.parseInt(keyInput.getText());
+
+                try {
+                    validKey(decryptionKey);
+                } catch (Exception exception) {
+                    infoBox("Please enter a key between [1 -26]", "Invalid Key!");
+                }
+
                 String ciphertext = cryptographyInput.getText();
 
                 if (CaesarCipher.validKey(decryptionKey)) {
@@ -136,7 +131,7 @@ public class CaesarCipherScreen extends JFrame {
                 try {
                     writer.open();
                 } catch (FileNotFoundException fileNotFoundException) {
-                    fileNotFoundException.printStackTrace();
+                    infoBox("Please enter a key between [1 -26]", "Invalid Key!");
                 }
                 writer.write(cryptographyOperationsList);
                 writer.close();
@@ -192,6 +187,32 @@ public class CaesarCipherScreen extends JFrame {
         });
 
 
+        about.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                init();
+            }
+        });
+    }
+
+    public void init() {
+
+        ImageIcon icon = new ImageIcon("res/CaesarCipher.png");
+        Image image = icon.getImage(); // transform it
+        Image newImg = image.getScaledInstance(300, 150, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        icon = new ImageIcon(newImg);  // transform it back
+
+//        JLabel.set  //setHorizontalAlignment(JLabel.LEFT);
+//        JLabel.setVerticalAlignment(JLabel.CENTER);
+        JOptionPane.showMessageDialog(this, "<html><body><p style='width: 200px;'>"
+                        + "In cryptography, a Caesar cipher, also known as Caesar's cipher, the shift cipher, "
+                        + "Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques. "
+                        + "It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter "
+                        + "some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be "
+                        + "replaced by A, E would become B, and so on. The method is named after Julius Caesar, who used it in "
+                        + "his private correspondence" + "</p></body></html>", "What is the Caesar Cipher?",
+                JOptionPane.INFORMATION_MESSAGE, icon);
+
     }
 
     public void refreshCryptographyOperationsList() {
@@ -204,6 +225,8 @@ public class CaesarCipherScreen extends JFrame {
                         + " with the key " + "'" + cryptographyOperation.getKey() + "'"
                         + " your cipher text is >>> " + cryptographyOperation.getCiphertext()
                         + " with the specific ID of: " + cryptographyOperation.getId();
+
+
                 defaultListCryptOps.addElement(operationDescription);
             } else if (cryptographyOperation.getType().equalsIgnoreCase("Caesar Cipher Decryption")) {
                 operationDescription = "NEW DECRYPTION OPERATION: " + "'" + cryptographyOperation.getCiphertext() + "'"
@@ -218,4 +241,17 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    public static boolean validKey(int key) throws Exception {
+        if (key <= 26 && key >= 0) {
+            return true;
+        } else {
+            throw new Exception();
+        }
+    }
+
+    public void infoBox(String infoMessage, String titleBar) {
+        JOptionPane.showMessageDialog(this, infoMessage,
+                "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
 }
+
