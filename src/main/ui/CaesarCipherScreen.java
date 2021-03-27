@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 
+import static javax.swing.JList.VERTICAL_WRAP;
+
 public class CaesarCipherScreen extends JFrame {
     private JButton encryptionButton;
     private JButton saveOperationButton;
@@ -26,6 +28,7 @@ public class CaesarCipherScreen extends JFrame {
     private JPanel panelMain;
     private JTextField keyInput;
     private JList cryptographyOperationsJList;
+    private JScrollPane scrollPane;
     private CryptographyOperationsList cryptographyOperationsList;
     private DefaultListModel defaultListCryptOps;
     private static JsonWriter writer = new JsonWriter("./data/CaesarCipher.txt");
@@ -53,22 +56,28 @@ public class CaesarCipherScreen extends JFrame {
 
         setVisible(true);
 
-        //1. Create the frame.
-        JFrame frame = new JFrame("FrameDemo");
+//        panelMain.setMaximumSize(new Dimension(100, 100));
+//        cryptographyOperationsJList.setMaximumSize(new Dimension(100, 100));
+//        super.setMaximizedBounds(new Rectangle(100, 200));
 
-//2. Optional: What happens when the frame closes?
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        JFrame jframe = new JFrame();
+//        super.setPreferredSize(new Dimension(400, 300));
 
-//3. Create components and put them in the frame.
-//...create emptyLabel...
-//        frame.getContentPane().add() //(emptyLabel, BorderLayout.CENTER);
+//        JScrollPane scrollPane1 = new JScrollPane(cryptographyOperationsJList);
+//        scrollPane1.setMaximumSize(new Dimension(200, 200));
+//        scrollPane1.setMinimumSize(new Dimension(200,200));
+//        panelMain.add(scrollPane1, BorderLayout.LINE_END);
 
-//4. Size the frame.
-        frame.pack();
+//        cryptographyOperationsJList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 
-//5. Show it.
-        frame.setVisible(true);
-
+//        cryptographyOperationsJList.setVisibleRowCount(5);
+        Dimension d = cryptographyOperationsJList.getPreferredSize();
+        d.width = 200;
+        d.height = 200;
+//        scrollPane = new JScrollPane(cryptographyOperationsJList);
+        scrollPane.setPreferredSize(d);
+        //cryptographyOperationsJList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        cryptographyOperationsJList.setVisibleRowCount(-1);
 
         encryptionButton.addActionListener(new ActionListener() {
             @Override
