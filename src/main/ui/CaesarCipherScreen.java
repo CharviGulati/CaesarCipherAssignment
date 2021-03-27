@@ -16,20 +16,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 
-import static javax.swing.JList.VERTICAL_WRAP;
-
 public class CaesarCipherScreen extends JFrame {
     private JButton encryptionButton;
     private JButton saveOperationButton;
     private JButton removeFromFileButton;
     private JButton decryptButton;
-    private JButton loadPreviousCryptographyOps;
+    private JButton loadPreviousCryptographyOpsButton;
+    private JButton aboutButton;
     private JTextField cryptographyInput;
     private JPanel panelMain;
     private JTextField keyInput;
     private JList cryptographyOperationsJList;
     private JScrollPane scrollPane;
-    private JButton about;
     private CryptographyOperationsList cryptographyOperationsList;
     private DefaultListModel defaultListCryptOps;
     private static JsonWriter writer = new JsonWriter("./data/CaesarCipher.txt");
@@ -52,7 +50,7 @@ public class CaesarCipherScreen extends JFrame {
         saveOperationButton.setEnabled(false);
         encryptionButton.setEnabled(true);
         decryptButton.setEnabled(true);
-        loadPreviousCryptographyOps.setEnabled(true);
+        loadPreviousCryptographyOpsButton.setEnabled(true);
 
         setVisible(true);
         Dimension dimension = cryptographyOperationsJList.getPreferredSize();
@@ -61,6 +59,19 @@ public class CaesarCipherScreen extends JFrame {
         scrollPane.setPreferredSize(dimension);
         cryptographyOperationsJList.setVisibleRowCount(-1);
 
+        Dimension unifiedDimension = new Dimension(20, 20);
+        Dimension scrollPaneDimension = new Dimension(100, 300);
+
+        encryptionButton.setPreferredSize(unifiedDimension);
+        decryptButton.setPreferredSize(unifiedDimension);
+        saveOperationButton.setPreferredSize(unifiedDimension);
+        removeFromFileButton.setPreferredSize(unifiedDimension);
+        loadPreviousCryptographyOpsButton.setPreferredSize(unifiedDimension);
+        aboutButton.setPreferredSize(unifiedDimension);
+
+        cryptographyInput.setPreferredSize(unifiedDimension);
+        keyInput.setPreferredSize(unifiedDimension);
+        scrollPane.setPreferredSize(scrollPaneDimension);
 
 
         encryptionButton.addActionListener(new ActionListener() {
@@ -164,7 +175,7 @@ public class CaesarCipherScreen extends JFrame {
             }
         });
 
-        loadPreviousCryptographyOps.addActionListener(new ActionListener() {
+        loadPreviousCryptographyOpsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -187,7 +198,7 @@ public class CaesarCipherScreen extends JFrame {
         });
 
 
-        about.addActionListener(new ActionListener() {
+        aboutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 init();

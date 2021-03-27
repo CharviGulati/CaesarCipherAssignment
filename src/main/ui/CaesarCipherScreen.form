@@ -28,14 +28,16 @@
           <component id="7b466" class="javax.swing.JTextField" binding="cryptographyInput">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="435" height="30"/>
               </grid>
             </constraints>
             <properties/>
           </component>
           <component id="7ab66" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="435" height="17"/>
+              </grid>
             </constraints>
             <properties>
               <font name=".SF NS Mono" size="14"/>
@@ -44,7 +46,9 @@
           </component>
           <component id="fd8f8" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="435" height="17"/>
+              </grid>
             </constraints>
             <properties>
               <enabled value="true"/>
@@ -55,7 +59,7 @@
           <component id="e6656" class="javax.swing.JTextField" binding="keyInput">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+                <preferred-size width="435" height="30"/>
               </grid>
             </constraints>
             <properties/>
@@ -105,7 +109,7 @@
               <text value="Decrypt!"/>
             </properties>
           </component>
-          <component id="97621" class="javax.swing.JButton" binding="loadPreviousCryptographyOps">
+          <component id="97621" class="javax.swing.JButton" binding="loadPreviousCryptographyOpsButton">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -113,7 +117,7 @@
               <text value="See Previous Cryptography Operations"/>
             </properties>
           </component>
-          <component id="cce8e" class="javax.swing.JButton" binding="about">
+          <component id="cce8e" class="javax.swing.JButton" binding="aboutButton">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -145,6 +149,9 @@
             <constraints/>
             <properties>
               <font name=".AppleSystemUIFontMonospaced" size="16"/>
+              <layoutOrientation value="0"/>
+              <maximumSize width="200" height="200"/>
+              <minimumSize width="100" height="100"/>
               <model/>
               <selectionMode value="0"/>
             </properties>
