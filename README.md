@@ -41,5 +41,11 @@ In the context fo this program the user stories are:
 ### Phase 2 User Stories
 - As a user I want my encryption operations to be saved to a file
 - As a user, when I start the application, I want to be given the option to load my encryption 
-operations list from file.
+operations list from a file.
 - As a user I want the option to remove a cryptography operation permanently from file
+
+### Phase 3 User Stories
+
+- As a user, I want to be able to add multiple multiple encryption 
+and decryption operations to a text file
+- As a user, I want to be able to load and save the state of the application
