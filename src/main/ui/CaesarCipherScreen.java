@@ -61,6 +61,7 @@ public class CaesarCipherScreen extends JFrame {
 
         Dimension unifiedDimension = new Dimension(20, 20);
         Dimension scrollPaneDimension = new Dimension(100, 300);
+        Dimension textPaneDimension = new Dimension(50, 30);
 
         encryptionButton.setPreferredSize(unifiedDimension);
         decryptButton.setPreferredSize(unifiedDimension);
@@ -69,8 +70,8 @@ public class CaesarCipherScreen extends JFrame {
         loadPreviousCryptographyOpsButton.setPreferredSize(unifiedDimension);
         aboutButton.setPreferredSize(unifiedDimension);
 
-        cryptographyInput.setPreferredSize(unifiedDimension);
-        keyInput.setPreferredSize(unifiedDimension);
+        cryptographyInput.setPreferredSize(textPaneDimension);
+        keyInput.setPreferredSize(textPaneDimension);
         scrollPane.setPreferredSize(scrollPaneDimension);
 
 
@@ -139,15 +140,18 @@ public class CaesarCipherScreen extends JFrame {
         saveOperationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    writer.open();
-                } catch (FileNotFoundException fileNotFoundException) {
-                    infoBox("Please enter a key between [1 -26]", "Invalid Key!");
-                }
-                writer.write(cryptographyOperationsList);
-                writer.close();
 
-                removeFromFileButton.setEnabled(true);
+                if (sureYouWantToSavePopUp() == 0) {
+                    try {
+                        writer.open();
+                    } catch (FileNotFoundException fileNotFoundException) {
+                        infoBox("Please enter a key between [1 -26]", "Invalid Key!");
+                    }
+                    writer.write(cryptographyOperationsList);
+                    writer.close();
+                    removeFromFileButton.setEnabled(true);
+                    popIpBoxForSavedOps();
+                }
             }
         });
 
@@ -181,6 +185,7 @@ public class CaesarCipherScreen extends JFrame {
                 try {
                     cryptographyOperationsList = jsonReader.read();
                     refreshCryptographyOperationsList();
+                    removeFromFileButton.setEnabled(true);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -197,7 +202,6 @@ public class CaesarCipherScreen extends JFrame {
             }
         });
 
-
         aboutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -209,19 +213,22 @@ public class CaesarCipherScreen extends JFrame {
     public void init() {
 
         ImageIcon icon = new ImageIcon("res/CaesarCipher.png");
-        Image image = icon.getImage(); // transform it
-        Image newImg = image.getScaledInstance(300, 150, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        icon = new ImageIcon(newImg);  // transform it back
+        Image image = icon.getImage();
+        Image newImg = image.getScaledInstance(300, 150, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newImg);
 
-//        JLabel.set  //setHorizontalAlignment(JLabel.LEFT);
-//        JLabel.setVerticalAlignment(JLabel.CENTER);
-        JOptionPane.showMessageDialog(this, "<html><body><p style='width: 200px;'>"
-                        + "In cryptography, a Caesar cipher, also known as Caesar's cipher, the shift cipher, "
-                        + "Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques. "
-                        + "It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter "
-                        + "some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be "
-                        + "replaced by A, E would become B, and so on. The method is named after Julius Caesar, who used it in "
-                        + "his private correspondence" + "</p></body></html>", "What is the Caesar Cipher?",
+        JOptionPane.showMessageDialog(this,"<html><body><p style='width: 200px;'>"
+                        + "In cryptography, a Caesar cipher, also known "
+                        + "the shift cipher. "
+                        + "It is a very simple and widely known encryption technique. "
+                        + "In this cipher each letter in plaintext is replaced by another letter depending "
+                        + "on the key inout. The key determines the number of positions to move down in the "
+                        + "alphabet. For example, with a key of 3, if you are encrypting a message, an A would be "
+                        + "replaced by a D. If you are decrypting the letter A with the key 5 "
+                        + "then the shift would be to the right and the encrypted letter would be V. "
+                        + "The method is named after Julius Caesar, who used it in "
+                        + "his private correspondence <br/><br/>-Wikipedia</p></body></html>",
+                "What is the Caesar Cipher?",
                 JOptionPane.INFORMATION_MESSAGE, icon);
 
     }
@@ -232,17 +239,19 @@ public class CaesarCipherScreen extends JFrame {
 
         for (CryptographyOperation cryptographyOperation : cryptographyOperationsList.getCryptographyOperations()) {
             if (cryptographyOperation.getType().equalsIgnoreCase("Caesar Cipher Encryption")) {
-                operationDescription = "NEW ENCRYPTION OPERATION: " + "'" + cryptographyOperation.getPlaintext() + "'"
+                operationDescription = "NEW ENCRYPTION OPERATION: You entered: " + "'" + cryptographyOperation.getPlaintext()
+                        + "'"
                         + " with the key " + "'" + cryptographyOperation.getKey() + "'"
-                        + " your cipher text is >>> " + cryptographyOperation.getCiphertext()
+                        + " your cipher text is >>> " + " '" + cryptographyOperation.getCiphertext() + "' "
                         + " with the specific ID of: " + cryptographyOperation.getId();
 
 
                 defaultListCryptOps.addElement(operationDescription);
             } else if (cryptographyOperation.getType().equalsIgnoreCase("Caesar Cipher Decryption")) {
-                operationDescription = "NEW DECRYPTION OPERATION: " + "'" + cryptographyOperation.getCiphertext() + "'"
+                operationDescription = "NEW DECRYPTION OPERATION: You entered: " + " '"
+                        + cryptographyOperation.getCiphertext() + "' "
                         + " with the key " + "'" + cryptographyOperation.getKey() + "'"
-                        + " your plain text is >>> " + cryptographyOperation.getPlaintext()
+                        + " your plain text is >>> " +  " '" + cryptographyOperation.getPlaintext() + "' "
                         + " with the specific ID of: " + cryptographyOperation.getId();
                 defaultListCryptOps.addElement(operationDescription);
             }
@@ -264,5 +273,28 @@ public class CaesarCipherScreen extends JFrame {
         JOptionPane.showMessageDialog(this, infoMessage,
                 "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public void popIpBoxForSavedOps() {
+        JOptionPane.showMessageDialog(this, "Your operations have been saved!",
+                "" + "SAVED!", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public Integer sureYouWantToSavePopUp() {
+        getContentPane().setLayout(null);
+
+        ImageIcon icon = new ImageIcon("res/CaesarCipher.png");
+        Image image = icon.getImage();
+        Image newImg = image.getScaledInstance(150, 100, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newImg);
+
+        int input = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to overwrite the previously saved file with the "
+                        + "new operations?", "Save Option",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, icon);
+        // 0=ok, 2=cancel
+        return input;
+
+    }
 }
+
 

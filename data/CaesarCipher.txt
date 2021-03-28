@@ -1,8 +1,18 @@
-{"cryptographyOperations": [{
-    "dateTime": "Sat Mar 27 11:02:22 PDT 2021",
-    "ciphertext": "M eq eaiwsqi",
-    "plaintext": "I am awesome",
-    "id": 8452525,
-    "type": "Caesar Cipher Encryption",
-    "key": 4
-}]}
+{"cryptographyOperations": [
+    {
+        "dateTime": "Sat Mar 27 21:55:25 PDT 2021",
+        "ciphertext": "kksks",
+        "plaintext": "ffnfn",
+        "id": 3341683,
+        "type": "Caesar Cipher Decryption",
+        "key": 5
+    },
+    {
+        "dateTime": "Sat Mar 27 21:55:25 PDT 2021",
+        "ciphertext": "kksks",
+        "plaintext": "ffnfn",
+        "id": 8502868,
+        "type": "Caesar Cipher Decryption",
+        "key": 5
+    }
+]}
