@@ -32,6 +32,7 @@ public class CaesarCipherScreen extends JFrame {
     private int selectedCryptographyOperationIndex;
 
 
+    // EFFECTS: constructs main GUI for ceasar Cipher
     public CaesarCipherScreen() {
         super("Caesar Cipher");
         setCaesarCipherDefaultUiOptions();
@@ -51,6 +52,8 @@ public class CaesarCipherScreen extends JFrame {
         aboutButton.addActionListener(e -> aboutMessage());
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets Caesar Cipher GUI default options
     private void setCaesarCipherDefaultUiOptions() {
         this.setContentPane(this.panelMain);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +70,8 @@ public class CaesarCipherScreen extends JFrame {
         setCaesarCipherUiDimensions();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets Caesar Cipher GUI default dimensions for buttons
     private void setCaesarCipherUiDimensions() {
         Dimension dimension = cryptographyOperationsJList.getPreferredSize();
         dimension.width = 200;
@@ -87,6 +92,8 @@ public class CaesarCipherScreen extends JFrame {
         scrollPane.setPreferredSize(scrollPaneDimension);
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI list selection for remove option
     private void handleListSelectionEvent() {
         int index = cryptographyOperationsJList.getSelectedIndex();
         if (index != -1) {
@@ -94,6 +101,8 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI encryption option
     private void encryptionButtonClick(ActionEvent e) {
         int encryptionKey = Integer.parseInt(keyInput.getText());
         try {
@@ -119,6 +128,8 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI decryption option
     private void decryptionButtonClick(ActionEvent e) {
         int decryptionKey = Integer.parseInt(keyInput.getText());
 
@@ -148,6 +159,8 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI save option
     private void setSaveOperationButtonClick(ActionEvent e) {
         if (sureYouWantToSavePopUp() == 0) {
             try {
@@ -162,6 +175,8 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI remove option
     private void removeButtonClick(ActionEvent e) {
         if (selectedCryptographyOperationIndex >= 0) {
             cryptographyOperationsList.getCryptographyOperations().remove(selectedCryptographyOperationIndex);
@@ -183,6 +198,8 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI loading previous cryptography operations option
     private void loadPreviousButtonClick(ActionEvent e) {
         try {
             cryptographyOperationsList = jsonReader.read();
@@ -193,6 +210,8 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles Caesar Cipher GUI about button option
     private void aboutMessage() {
 
         ImageIcon icon = new ImageIcon("res/CaesarCipher.png");
@@ -216,6 +235,8 @@ public class CaesarCipherScreen extends JFrame {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: refreshes CryptographyOperationsList for the purpose of reloading data on screen
     private void refreshCryptographyOperationsList() {
         defaultListCryptOps.removeAllElements();
         String operationDescription = null;
@@ -244,6 +265,7 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // EFFECTS: validates user input key
     private static boolean validKey(int key) throws Exception {
         if (key <= 26 && key >= 0) {
             return true;
@@ -252,16 +274,20 @@ public class CaesarCipherScreen extends JFrame {
         }
     }
 
+    // EFFECTS: shows error message for invalid key input
     private void infoBox(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(this, infoMessage,
                 "" + titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 
+
+    // EFFECTS: shows message to user for saving their cryptography operations
     private void popIpBoxForSavedOps() {
         JOptionPane.showMessageDialog(this, "Your operations have been saved!",
                 "" + "SAVED!", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // EFFECTS: shows message to user for to make sure they want to save their cryptography operation
     private Integer sureYouWantToSavePopUp() {
         getContentPane().setLayout(null);
 

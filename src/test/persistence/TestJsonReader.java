@@ -63,6 +63,14 @@ public class TestJsonReader {
         reader.addCryptographyOperation(cryptographyOperationsList, jsonObject);
         assertNull(cryptographyOperationsList.getCryptographyOperations().get(0).getDateTime());
     }
+//    @Test
+//    public void testEmptyObject() {
+//        JsonReader reader = new JsonReader("./data/TestEmpty.txt");
+//        JSONObject jsonObject = new JSONObject();
+//        CryptographyOperationsList cryptographyOperationsList = new CryptographyOperationsList();
+//        reader.addCryptographyOperation(cryptographyOperationsList, jsonObject);
+//        assertNull(cryptographyOperationsList.getCryptographyOperations().get(0));
+//    }
 
 
 }

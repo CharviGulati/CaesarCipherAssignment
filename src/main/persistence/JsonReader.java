@@ -63,9 +63,9 @@ public class JsonReader {
         JSONArray jsonArray = jsonObject.getJSONArray("cryptographyOperations");
         for (Object json : jsonArray) {
             JSONObject nextCryptographyOperation = (JSONObject) json;
-            if (!json.toString().equals("{}")) {
+            //if (!json.toString().equals("{}")) {
                 addCryptographyOperation(list, nextCryptographyOperation);
-            }
+            //}
         }
     }
 
