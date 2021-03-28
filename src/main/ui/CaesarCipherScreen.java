@@ -283,18 +283,23 @@ public class CaesarCipherScreen extends JFrame {
 
     // EFFECTS: shows message to user for saving their cryptography operations
     private void popIpBoxForSavedOps() {
+        ImageIcon icon = new ImageIcon("res/JuliusCaesar.png");
+        Image image = icon.getImage();
+        Image newImage = image.getScaledInstance(130, 150, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newImage);
+
         JOptionPane.showMessageDialog(this, "Your operations have been saved!",
-                "" + "SAVED!", JOptionPane.INFORMATION_MESSAGE);
+                "" + "SAVED!", JOptionPane.INFORMATION_MESSAGE, icon);
     }
 
     // EFFECTS: shows message to user for to make sure they want to save their cryptography operation
     private Integer sureYouWantToSavePopUp() {
         getContentPane().setLayout(null);
 
-        ImageIcon icon = new ImageIcon("res/CaesarCipher.png");
+        ImageIcon icon = new ImageIcon("res/JuliusCaesar.png");
         Image image = icon.getImage();
-        Image newImg = image.getScaledInstance(150, 100, java.awt.Image.SCALE_SMOOTH);
-        icon = new ImageIcon(newImg);
+        Image newImage = image.getScaledInstance(130, 150, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newImage);
 
         int input = JOptionPane.showConfirmDialog(this,
                 "Are you sure you want to overwrite the previously saved file with the "

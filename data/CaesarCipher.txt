@@ -8,14 +8,6 @@
         "key": 2
     },
     {
-        "dateTime": "Sat Mar 27 22:49:22 PDT 2021",
-        "ciphertext": "fff",
-        "plaintext": "aaa",
-        "id": 4657291,
-        "type": "Caesar Cipher Decryption",
-        "key": 5
-    },
-    {
         "dateTime": "Sat Mar 27 22:49:23 PDT 2021",
         "ciphertext": "fff",
         "plaintext": "aaa",
