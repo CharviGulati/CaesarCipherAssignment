@@ -1,6 +1,7 @@
 package model;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 // testCaesarCipherEncryption is the testing class for the Caesar Cipher class. Tests accurate

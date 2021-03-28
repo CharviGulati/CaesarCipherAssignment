@@ -2,7 +2,9 @@ package model;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
+
 import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 // The TestCryptographyOperationsList class tests the CryptographyOperationList class and all the methods in it
@@ -34,7 +36,7 @@ public class TestCryptographyOperationsList {
 
 
     @Test
-    public void testRemoveOperation(){
+    public void testRemoveOperation() {
         CryptographyOperation cryptographyOperation = new CryptographyOperation("Caesar Cipher Encryption",
                 new Date(), "jkjkjk", "Hello!", 0, 000);
 
