@@ -13,6 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 
+
+// CaesarCipherScreen class creates the GUI
+
 public class CaesarCipherScreen extends JFrame {
     private JButton encryptionButton;
     private JButton saveOperationButton;
