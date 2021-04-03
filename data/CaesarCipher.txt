@@ -8,11 +8,27 @@
         "key": 2
     },
     {
-        "dateTime": "Sat Mar 27 22:49:23 PDT 2021",
-        "ciphertext": "fff",
-        "plaintext": "aaa",
-        "id": 9638557,
+        "dateTime": "Tue Mar 30 10:57:29 PDT 2021",
+        "ciphertext": "lipps!",
+        "plaintext": "hello!",
+        "id": 5563618,
+        "type": "Caesar Cipher Encryption",
+        "key": 4
+    },
+    {
+        "dateTime": "Tue Mar 30 10:57:35 PDT 2021",
+        "ciphertext": "hello!",
+        "plaintext": "dahhk!",
+        "id": 675825,
         "type": "Caesar Cipher Decryption",
-        "key": 5
+        "key": 4
+    },
+    {
+        "dateTime": "Tue Mar 30 10:59:46 PDT 2021",
+        "ciphertext": "hello!",
+        "plaintext": "dahhk!",
+        "id": 952877,
+        "type": "Caesar Cipher Decryption",
+        "key": 4
     }
 ]}

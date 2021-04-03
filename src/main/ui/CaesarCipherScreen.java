@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.InvalidKeyException;
 import model.CaesarCipher;
 import model.CryptographyOperation;
 import model.CryptographyOperationsList;
@@ -40,9 +41,21 @@ public class CaesarCipherScreen extends JFrame {
         super("Caesar Cipher");
         setCaesarCipherDefaultUiOptions();
 
-        encryptionButton.addActionListener(e -> encryptionButtonClick(e));
+        encryptionButton.addActionListener(e -> {
+            try {
+                encryptionButtonClick(e);
+            } catch (InvalidKeyException invalidKeyException) {
+                invalidKeyException.getMessage();
+            }
+        });
 
-        decryptButton.addActionListener(e -> decryptionButtonClick(e));
+        decryptButton.addActionListener(e -> {
+            try {
+                decryptionButtonClick(e);
+            } catch (InvalidKeyException invalidKeyException) {
+                invalidKeyException.getMessage();
+            }
+        });
 
         saveOperationButton.addActionListener(e -> setSaveOperationButtonClick(e));
 
@@ -106,12 +119,12 @@ public class CaesarCipherScreen extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: handles Caesar Cipher GUI encryption option
-    private void encryptionButtonClick(ActionEvent e) {
+    private void encryptionButtonClick(ActionEvent e) throws InvalidKeyException {
         int encryptionKey = Integer.parseInt(keyInput.getText());
         try {
             validKey(encryptionKey);
-        } catch (Exception exception) {
-            infoBox("Please enter a key between [1 -26]", "Invalid Key!");
+        } catch (InvalidKeyException exception) {
+            infoBox("Invalid key. Please enter a key between [0-26]", "Invalid Key!");
         }
         String plaintext = cryptographyInput.getText();
 
@@ -133,13 +146,13 @@ public class CaesarCipherScreen extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: handles Caesar Cipher GUI decryption option
-    private void decryptionButtonClick(ActionEvent e) {
+    private void decryptionButtonClick(ActionEvent e) throws InvalidKeyException {
         int decryptionKey = Integer.parseInt(keyInput.getText());
 
         try {
             validKey(decryptionKey);
-        } catch (Exception exception) {
-            infoBox("Please enter a key between [1 -26]", "Invalid Key!");
+        } catch (InvalidKeyException exception) {
+            infoBox("Invalid key. Please enter a key between [0-26]", "Invalid Key!");
         }
 
         String ciphertext = cryptographyInput.getText();
@@ -169,7 +182,7 @@ public class CaesarCipherScreen extends JFrame {
             try {
                 writer.open();
             } catch (FileNotFoundException fileNotFoundException) {
-                infoBox("Please enter a key between [1 -26]", "Invalid Key!");
+                infoBox("Please enter a key between [0 -26]", "Invalid Key!");
             }
             writer.write(cryptographyOperationsList);
             writer.close();
@@ -269,18 +282,23 @@ public class CaesarCipherScreen extends JFrame {
     }
 
     // EFFECTS: validates user input key
-    private static boolean validKey(int key) throws Exception {
+    private static boolean validKey(int key) throws InvalidKeyException {
         if (key <= 26 && key >= 0) {
             return true;
         } else {
-            throw new Exception();
+            throw new InvalidKeyException("Invalid Key. Please enter a key value between [0-26]");
         }
     }
 
     // EFFECTS: shows error message for invalid key input
     private void infoBox(String infoMessage, String titleBar) {
+        ImageIcon icon = new ImageIcon("res/JuliusCaesar.png");
+        Image image = icon.getImage();
+        Image newImage = image.getScaledInstance(130, 150, java.awt.Image.SCALE_SMOOTH);
+        icon = new ImageIcon(newImage);
+
         JOptionPane.showMessageDialog(this, infoMessage,
-                "" + titleBar, JOptionPane.INFORMATION_MESSAGE);
+                "" + titleBar, JOptionPane.INFORMATION_MESSAGE, icon);
     }
 
 

@@ -45,7 +45,22 @@ operations list from a file.
 - As a user I want the option to remove a cryptography operation permanently from file
 
 ### Phase 3 User Stories
-
 - As a user, I want to be able to add multiple multiple encryption 
 and decryption operations to a text file
 - As a user, I want to be able to load and save the state of the application
+
+
+### Phase 4: Task 2
+I chose to do the following option for phase 4:
+- "Test and design a class in your model package that is robust.  
+You must have at least one method that throws a checked exception.  
+You must have one test for the case where the exception is expected 
+and another where the exception is not expected."
+
+The class and methods that were changed:
+- The methods I modified are all located in the CaesarCipher Class. Instead of the **REQUIRES** clause being
+"key >=0 or key <=26" it **now throws an exception** if the key is invalid; that being the key < 0 or key > 26. 
+The methods that throw the exception in the caesarCipher class are: **validKey(), decryptCipher() and encryptCipher()**. 
+The exception is caught in the GUI in **encryptionButtonClick() and decryptionButtonClick()**. 
+I have modified all the tests in the TestCaesarCipher Class to either throw the exception when I know it shouldn't be caught, or 
+to catch the exception when i know it should be caught. 

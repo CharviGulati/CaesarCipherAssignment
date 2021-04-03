@@ -3,15 +3,17 @@ package model;
 // Caesar Cipher class checks validity of key input, and either encrypts or decrypts the message
 // depending on the user request
 
+import exceptions.InvalidKeyException;
+
 public class CaesarCipher {
 
     // private - this class should not be instantiated
-    private CaesarCipher() {}
+    private CaesarCipher() { }
 
-    // REQUIRES: key to be >= 0 and <= 26
+
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: encrypts user input with given key
-    public static String encryptCipher(String plainText, int key) {
+    public static String encryptCipher(String plainText, int key) throws InvalidKeyException {
         StringBuilder buildEncryptedMessage = new StringBuilder();
         int lengthMsg = plainText.length();
         if (validKey(key)) {
@@ -32,23 +34,20 @@ public class CaesarCipher {
                 buildEncryptedMessage.append(msgToChar);
             }
             return buildEncryptedMessage.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 
 
-    // REQUIRES: key to be >= 0 and <= 26
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: decrypts user input with given key
-    public static String decryptCipher(String cipherText, int key) {
+    public static String decryptCipher(String cipherText, int key) throws InvalidKeyException {
         StringBuilder buildEncryptedMessage = new StringBuilder();
         int lengthMsg = cipherText.length();
         if (validKey(key)) {
             for (int j = 0; j < lengthMsg; j++) {
                 char msgToChar = cipherText.charAt(j);
                 if (msgToChar >= 'a' && msgToChar <= 'z') {
-                //if (msgToChar >= 'a' && msgToChar <= 'z' && Character.isLetter(msgToChar)) {
                     msgToChar = (char) (cipherText.charAt(j) - key);
                     if (msgToChar < 'a') {
                         msgToChar = (char) (cipherText.charAt(j) + (26 - key));
@@ -63,15 +62,18 @@ public class CaesarCipher {
                 buildEncryptedMessage.append(msgToChar);
             }
             return buildEncryptedMessage.toString();
-        } else {
-            return "";
         }
+        return "";
     }
 
 
     // REQUIRES: key to be >= 0 and <= 26
     // EFFECTS: checks valid key input from user
-    public static boolean validKey(int key) {
-        return (key <= 26 && key >= 0);
+    public static boolean validKey(int key) throws InvalidKeyException {
+        if (key <= 26 && key >= 0) {
+            return true;
+        } else {
+            throw new InvalidKeyException("Invalid key. Please enter a key value between [0-26]. ");
+        }
     }
 }

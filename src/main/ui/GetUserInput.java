@@ -1,12 +1,12 @@
 package ui;
 
+import exceptions.InvalidKeyException;
 import model.CryptographyOperation;
 import model.CryptographyOperationsList;
 import model.CaesarCipher;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -50,7 +50,7 @@ public class GetUserInput {
     }
 
     // EFFECTS: directs user input to the proper method or asks for more information from user and gets input
-    public static void menuOperations() {
+    public static void menuOperations() throws InvalidKeyException {
         int choice = getMenuInput();
         scanner.nextLine(); // clears newline character from input buffer
         if (choice == 1) {
@@ -116,7 +116,7 @@ public class GetUserInput {
 
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: gets user input for encryption details and adds the operation to the array list
-    public static void handleUserEncryptionRequest() {
+    public static void handleUserEncryptionRequest() throws InvalidKeyException {
         System.out.println("Type a string you want to encrypt: ");
         String plaintext = scanner.nextLine();
 
@@ -149,7 +149,7 @@ public class GetUserInput {
 
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
     // EFFECTS: gets user input for decryption details and adds the operation to the array list
-    public static void handleUserDecryptionRequest() {
+    public static void handleUserDecryptionRequest() throws InvalidKeyException {
 
         System.out.println("Type a string you want to decrypt: ");
         String ciphertext = scanner.nextLine();
