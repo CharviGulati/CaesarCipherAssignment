@@ -6,7 +6,7 @@ import persistence.Writable;
 import java.util.Date;
 
 // CryptographyOperation class is a class of the object CryptographyOperation that contains all fields needed
-// for the operations. This contains all the getters and setters for the program
+// for the operations. This contains all the getters and setters for the Caesar Cipher
 
 public class CryptographyOperation implements Writable {
 

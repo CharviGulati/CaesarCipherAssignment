@@ -45,16 +45,15 @@ operations list from a file.
 - As a user I want the option to remove a cryptography operation permanently from file
 
 ### Phase 3 User Stories
-- As a user, I want to be able to add multiple multiple encryption 
+- As a user, I want to be able to add multiple encryption 
 and decryption operations to a text file
 - As a user, I want to be able to load and save the state of the application
 
 
 ### Phase 4: Task 2
 I chose to do the following option for phase 4:
-- "Test and design a class in your model package that is robust.  
-You must have at least one method that throws a checked exception.  
-You must have one test for the case where the exception is expected 
+- "Test and design a class in your model package that is robust. You must have at least one method that 
+throws a checked exception. You must have one test for the case where the exception is expected 
 and another where the exception is not expected."
 
 The class and methods that were changed:
@@ -64,3 +63,16 @@ The methods that throw the exception in the caesarCipher class are: **validKey()
 The exception is caught in the GUI in **encryptionButtonClick() and decryptionButtonClick()**. 
 I have modified all the tests in the TestCaesarCipher Class to either throw the exception when I know it shouldn't be caught, or 
 to catch the exception when i know it should be caught. 
+
+### Phase 4: Task 3
+I think my program design is well implemented. There are no redundant calls from one class to another, which means that there is
+low coupling and high cohesion. 
+
+For example, my original idea was to code multiple ciphers in this program and have the user choose which one they would like to use. 
+Unfortunately, I didn't have enough time to code the other ciphers but if I were to add them in the future, 
+I would not have many changes to make. Some things I would change would be adding another class (or classes) for the other 
+types of ciphers (e.g. railfence) which would talk to the CaesarCipherScreen class who in turn talks to all the other classes. 
+Another thing I would have to change is the filtering method in CryptographyOperationsList that filters cryptography operations based 
+on the following string: "Caesar Cipher Encryption" and/or "Caesar Cipher Decryption" but in order to be able to filter 
+through the other cipher operations I could filter the operations based on the fact that the string includes 
+"Encryption" instead of "Caesar Cipher Encryption" (same for decryption). 

@@ -188,8 +188,8 @@ class TestCaesarCipher {
             assertEquals("!@#$%!", CaesarCipher.decryptCipher(cipherTextSeven, 12));
             assertEquals("!@#$%!", CaesarCipher.decryptCipher(cipherTextSeven, 22));
         } catch (InvalidKeyException e) {
-            e.getMessage();
             fail("should not have reached this line of code");
+            e.getMessage();
         }
     }
 

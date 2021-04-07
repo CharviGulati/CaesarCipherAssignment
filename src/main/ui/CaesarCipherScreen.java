@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Date;
 
 
-// CaesarCipherScreen class creates the GUI
+// CaesarCipherScreen class creates the GUI and interacts with all other classes to integrate user input
 
 public class CaesarCipherScreen extends JFrame {
     private JButton encryptionButton;
@@ -41,21 +41,9 @@ public class CaesarCipherScreen extends JFrame {
         super("Caesar Cipher");
         setCaesarCipherDefaultUiOptions();
 
-        encryptionButton.addActionListener(e -> {
-            try {
-                encryptionButtonClick(e);
-            } catch (InvalidKeyException invalidKeyException) {
-                invalidKeyException.getMessage();
-            }
-        });
+        encryptionButton.addActionListener(e -> encryptionButtonClick(e));
 
-        decryptButton.addActionListener(e -> {
-            try {
-                decryptionButtonClick(e);
-            } catch (InvalidKeyException invalidKeyException) {
-                invalidKeyException.getMessage();
-            }
-        });
+        decryptButton.addActionListener(e -> decryptionButtonClick(e));
 
         saveOperationButton.addActionListener(e -> setSaveOperationButtonClick(e));
 
@@ -119,60 +107,59 @@ public class CaesarCipherScreen extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: handles Caesar Cipher GUI encryption option
-    private void encryptionButtonClick(ActionEvent e) throws InvalidKeyException {
+    private void encryptionButtonClick(ActionEvent e) {
         int encryptionKey = Integer.parseInt(keyInput.getText());
         try {
             validKey(encryptionKey);
+            String plaintext = cryptographyInput.getText();
+
+            if (CaesarCipher.validKey(encryptionKey)) {
+                String ciphertext = CaesarCipher.encryptCipher(plaintext, encryptionKey);
+                int randomId = (int) (Math.random() * 10000000 + 1);
+
+                CryptographyOperation cryptographyOperation = new CryptographyOperation(
+                        "Caesar Cipher Encryption",
+                        new Date(),
+                        ciphertext,
+                        plaintext,
+                        encryptionKey,
+                        randomId);
+                cryptographyOperationsList.addOperation(cryptographyOperation);
+                refreshCryptographyOperationsList();
+            }
         } catch (InvalidKeyException exception) {
             infoBox("Invalid key. Please enter a key between [0-26]", "Invalid Key!");
-        }
-        String plaintext = cryptographyInput.getText();
-
-        if (CaesarCipher.validKey(encryptionKey)) {
-            String ciphertext = CaesarCipher.encryptCipher(plaintext, encryptionKey);
-            int randomId = (int) (Math.random() * 10000000 + 1);
-
-            CryptographyOperation cryptographyOperation = new CryptographyOperation(
-                    "Caesar Cipher Encryption",
-                    new Date(),
-                    ciphertext,
-                    plaintext,
-                    encryptionKey,
-                    randomId);
-            cryptographyOperationsList.addOperation(cryptographyOperation);
-            refreshCryptographyOperationsList();
         }
     }
 
     // MODIFIES: this
     // EFFECTS: handles Caesar Cipher GUI decryption option
-    private void decryptionButtonClick(ActionEvent e) throws InvalidKeyException {
+    private void decryptionButtonClick(ActionEvent e) {
         int decryptionKey = Integer.parseInt(keyInput.getText());
 
         try {
             validKey(decryptionKey);
+            String ciphertext = cryptographyInput.getText();
+
+            if (CaesarCipher.validKey(decryptionKey)) {
+                String plaintext = CaesarCipher.decryptCipher(ciphertext, decryptionKey);
+
+                int randomId = (int) (Math.random() * 10000000 + 1);
+
+                CryptographyOperation cryptographyOperation = new CryptographyOperation(
+                        "Caesar Cipher Decryption",
+                        new Date(),
+                        ciphertext,
+                        plaintext,
+                        decryptionKey,
+                        randomId);
+                cryptographyOperationsList.addOperation(cryptographyOperation);
+                refreshCryptographyOperationsList();
+            }
         } catch (InvalidKeyException exception) {
             infoBox("Invalid key. Please enter a key between [0-26]", "Invalid Key!");
         }
 
-        String ciphertext = cryptographyInput.getText();
-
-        if (CaesarCipher.validKey(decryptionKey)) {
-            String plaintext = CaesarCipher.decryptCipher(ciphertext, decryptionKey);
-
-            int randomId = (int) (Math.random() * 10000000 + 1);
-
-            CryptographyOperation cryptographyOperation = new CryptographyOperation(
-                    "Caesar Cipher Decryption",
-                    new Date(),
-                    ciphertext,
-                    plaintext,
-                    decryptionKey,
-                    randomId);
-            cryptographyOperationsList.addOperation(cryptographyOperation);
-            refreshCryptographyOperationsList();
-
-        }
     }
 
     // MODIFIES: this
@@ -300,7 +287,6 @@ public class CaesarCipherScreen extends JFrame {
         JOptionPane.showMessageDialog(this, infoMessage,
                 "" + titleBar, JOptionPane.INFORMATION_MESSAGE, icon);
     }
-
 
     // EFFECTS: shows message to user for saving their cryptography operations
     private void popIpBoxForSavedOps() {
