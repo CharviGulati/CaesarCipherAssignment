@@ -101,33 +101,33 @@ class TestCaesarCipher {
     @Test
     public void testCaesarCipherEncryptionInvalidKey() {
         try {
-            assertEquals("", CaesarCipher.encryptCipher(plainText, -1));
+            CaesarCipher.encryptCipher(plainText, -1);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
         try {
-            assertEquals("", CaesarCipher.encryptCipher(plainText, 27));
-            fail("should not have reached this line of code");
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            assertEquals("", CaesarCipher.encryptCipher(plainText, 40));
+            CaesarCipher.encryptCipher(plainText, 27);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
 
         try {
-            assertEquals("", CaesarCipher.encryptCipher(plainTextSeven, -19));
+            CaesarCipher.encryptCipher(plainText, 40);
+            fail("should not have reached this line of code");
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            CaesarCipher.encryptCipher(plainTextSeven, -19);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
         try {
-            assertEquals("", CaesarCipher.encryptCipher(plainTextSeven, -190));
+            CaesarCipher.encryptCipher(plainTextSeven, -190);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
@@ -197,35 +197,37 @@ class TestCaesarCipher {
     @Test
     public void testCaesarCipherDecryptionInvalidKey() {
 
+        assertThrows(InvalidKeyException.class, () -> CaesarCipher.decryptCipher(cipherText, 28));
+
         try {
-            assertEquals("", CaesarCipher.decryptCipher(cipherText, -1));
+            CaesarCipher.decryptCipher(cipherText, -1);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
         try {
-            assertEquals("", CaesarCipher.decryptCipher(cipherText, 40));
+            CaesarCipher.decryptCipher(cipherText, 40);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
 
         try {
-            assertEquals("", CaesarCipher.decryptCipher(cipherTextSix, 27));
+            CaesarCipher.decryptCipher(cipherTextSix, 27);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
 
         try {
-            assertEquals("", CaesarCipher.decryptCipher(cipherTextEight, -180));
+            CaesarCipher.decryptCipher(cipherTextEight, -180);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         }
 
         try {
-            assertEquals("", CaesarCipher.decryptCipher(cipherTextNine, 180));
+            CaesarCipher.decryptCipher(cipherTextNine, 180);
             fail("should not have reached this line of code");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
@@ -234,12 +236,12 @@ class TestCaesarCipher {
     }
 
     @Test
-    public void testValidKey() throws InvalidKeyException {
-        assertThrows(InvalidKeyException.class, () -> CaesarCipher.validKey(Integer.MAX_VALUE));
-        assertThrows(InvalidKeyException.class, () -> CaesarCipher.validKey(Integer.MIN_VALUE));
-        assertThrows(InvalidKeyException.class, () -> CaesarCipher.validKey(-3));
-        assertThrows(InvalidKeyException.class, () -> CaesarCipher.validKey(27));
-        assertThrows(InvalidKeyException.class, () -> CaesarCipher.validKey(100));
+    public void testValidKey() {
+        assertFalse(CaesarCipher.validKey(Integer.MAX_VALUE));
+        assertFalse(CaesarCipher.validKey(Integer.MIN_VALUE));
+        assertFalse(CaesarCipher.validKey(-3));
+        assertFalse(CaesarCipher.validKey(27));
+        assertFalse(CaesarCipher.validKey(100));
         assertTrue(CaesarCipher.validKey(0));
         assertTrue(CaesarCipher.validKey(1));
         assertTrue(CaesarCipher.validKey(20));

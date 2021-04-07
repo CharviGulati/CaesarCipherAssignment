@@ -8,7 +8,8 @@ import exceptions.InvalidKeyException;
 public class CaesarCipher {
 
     // private - this class should not be instantiated
-    private CaesarCipher() { }
+    private CaesarCipher() {
+    }
 
 
     // MODIFIES: ArrayList<CryptographyOperation> cryptographyOperations
@@ -34,8 +35,9 @@ public class CaesarCipher {
                 buildEncryptedMessage.append(msgToChar);
             }
             return buildEncryptedMessage.toString();
+        } else {
+            throw new InvalidKeyException("Invalid key. Please enter a key value between [0-26].");
         }
-        return "";
     }
 
 
@@ -62,18 +64,15 @@ public class CaesarCipher {
                 buildEncryptedMessage.append(msgToChar);
             }
             return buildEncryptedMessage.toString();
+        } else {
+            throw new InvalidKeyException("Invalid key. Please enter a key value between [0-26].");
         }
-        return "";
     }
 
 
     // REQUIRES: key to be >= 0 and <= 26
     // EFFECTS: checks valid key input from user
-    public static boolean validKey(int key) throws InvalidKeyException {
-        if (key <= 26 && key >= 0) {
-            return true;
-        } else {
-            throw new InvalidKeyException("Invalid key. Please enter a key value between [0-26]. ");
-        }
+    public static boolean validKey(int key) {
+        return key <= 26 && key >= 0;
     }
 }
