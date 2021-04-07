@@ -59,7 +59,7 @@ and another where the exception is not expected."
 The class and methods that were changed:
 - The methods I modified are all located in the CaesarCipher Class. Instead of the **REQUIRES** clause being
 "key >=0 or key <=26" it **now throws an exception** if the key is invalid; that being the key < 0 or key > 26. 
-The methods that throw the exception in the caesarCipher class are: **validKey(), decryptCipher() and encryptCipher()**. 
+The methods that throw the exception in the caesarCipher class are: **decryptCipher() and encryptCipher()**. 
 The exception is caught in the GUI in **encryptionButtonClick() and decryptionButtonClick()**. 
 I have modified all the tests in the TestCaesarCipher Class to either throw the exception when I know it shouldn't be caught, or 
 to catch the exception when i know it should be caught. 
