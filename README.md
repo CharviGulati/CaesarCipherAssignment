@@ -1,8 +1,8 @@
-# My Cryptography Project
+# Caesar Cipher Cryptography Project
 
 ### The Cipher
 
-This project is a small cryptography project that uses the **Caesar Cipher**. 
+This project is a small cryptography project that implements the **Caesar Cipher**. 
 The Caesar Cipher is a historical cryptography method that was used by *Julius Caesar* to communicate
 with his allies without being caught by his enemies. I chose to do this for my project because I have interest 
 in furthering my understanding of cryptography.
@@ -21,9 +21,6 @@ provide the right ID for those entries. This fulfills the multiple Xs -> Y requi
 This program can be used by anyone really, but it'll probably be most interesting to high school students who 
 love to send messages with hidden meaning. This program can be used by anyone in the class who desires to write an 
 encrypted message.
-
-
-
 
 
 ### User Stories
